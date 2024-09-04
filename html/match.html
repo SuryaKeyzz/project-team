@@ -8,6 +8,8 @@
   </head>
   <body>
     <div class="match-container" id="matchCard">
+      <p id="matchCount" class="match-count">0/3 matches</p>
+
       <div class="profile-pic-container">
         <img
           src="../img/character2.png"
@@ -22,14 +24,29 @@
         someone who shares my passion for life."
       </p>
 
-      <a href="./chat.html" style="text-decoration: none">
-        <button class="match-button">Match</button>
-      </a>
+      <button class="match-button" disabled> << Skip</button>
 
-      <button class="skip-button">Skip</button>
+      <button class="skip-button" disabled>Match >></button>
     </div>
 
-    <script src="../javascript/match.js"></script>
+    <div class="chat-container">
 
+    </div>
+
+    <div id="matchPopup" class="popup hide">
+      <div class="match-content">
+        <p>It's a match with <span id="matchedName"></span>!</p>
+      </div>
+    </div>
+
+    <div id="firstMatchPopup" class="popup hide">
+      <div class="popup-content">
+        <h2>First Match!</h2>
+        <p>Congratulations on your first match!</p>
+      </div>
+    </div>
+    
+
+    <script src="../javascript/match.js"></script>
   </body>
 </html>

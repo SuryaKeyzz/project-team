@@ -50,6 +50,8 @@ const profiles = [
 ];
 
 let currentIndex = 0;
+let currentMatchCount = 0;
+const maxMatches = 3;
 
 function updateProfile() {
   const profilePicContainer = document.querySelector(".profile-pic-container");
@@ -58,19 +60,16 @@ function updateProfile() {
   const profileAge = document.querySelector(".profile-age");
   const profileBio = document.querySelector(".profile-bio");
 
-  // Update the profile content
   profilePic.src = profiles[currentIndex].image;
   profileName.textContent = profiles[currentIndex].name;
   profileAge.textContent = profiles[currentIndex].age;
   profileBio.textContent = `"${profiles[currentIndex].bio}"`;
 
-  // Apply fade and bounce animation
   profilePicContainer.classList.add("fade-bounce");
   profileName.classList.add("fadeInUp");
   profileAge.classList.add("fadeInUp");
   profileBio.classList.add("fadeInUp");
 
-  // Remove animation classes after they finish
   setTimeout(() => {
     profilePicContainer.classList.remove("fade-bounce");
     profileName.classList.remove("fadeInUp");
@@ -84,28 +83,188 @@ function nextProfile() {
   updateProfile();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const card = document.querySelector(".match-container");
+function updateMatchCount() {
+  const matchCountElement = document.getElementById('matchCount');
+  matchCountElement.textContent = `${currentMatchCount}/${maxMatches} matches`;
+}
+
+function redirectToChatWithThirdMatch() {
+  localStorage.setItem('hasReachedThirdMatch', true);
+  window.location.href = 'chat.html';
+}
+
+function showPopup(matchedName) {
+  const popup = document.getElementById('matchPopup');
+  const matchedNameSpan = document.getElementById('matchedName');
+
+  console.log("Matched name:", matchedName);
+  
+  matchedNameSpan.textContent = matchedName;
+
+  // Ensure popup is hidden initially
+  popup.classList.add('hide');
+  popup.classList.remove('show');
+
+  // Set a small delay to allow the reflow
+  setTimeout(() => {
+    // Make sure the popup is displayed
+    popup.style.display = 'block';
+    
+    // Trigger the show animation
+    setTimeout(() => {
+      popup.classList.add('show');
+      popup.classList.remove('hide');
+    }, 10); // Delay allows the browser to register the display change
+  }, 0);
+
+  // Hide the popup after 1 second
+  setTimeout(() => {
+    popup.classList.add('hide');
+    popup.classList.remove('show');
+  }, 1000);
+
+  // Set display to none after the hide animation
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 1300); // Ensure this happens after the hide transition
+}
+
+function matchProfile() {
+  if (currentMatchCount < maxMatches) {
+    currentMatchCount++;
+    updateMatchCount();
+
+    const matchedName = profiles[currentIndex].name;
+
+    localStorage.setItem('lastMatchedName', matchedName);
+    localStorage.setItem('lastMatchedImage', profiles[currentIndex].image);
+
+    showPopup(matchedName);
+
+    if (currentMatchCount === maxMatches) {
+      redirectToChatWithThirdMatch();
+      return;
+    }
+  }
+
+  const card = document.querySelector('.match-container');
+  card.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+  card.style.transform = 'translate(200%, 0) rotate(45deg)';
+  card.style.opacity = '0';
+
+  setTimeout(() => {
+    nextProfile();
+    resetCardPosition();
+    card.style.opacity = '1';
+  }, 500);
+}
+
+function skipProfile(action) {
+  const card = document.querySelector('.match-container');
+  card.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+  card.style.transform = 'translate(-200%, 0) rotate(-45deg)';
+  card.style.opacity = '0';
+
+  setTimeout(() => {
+    nextProfile();
+    resetCardPosition();
+    card.style.opacity = '1';
+  }, 500);
+}
+
+function resetCardPosition() {
+  const card = document.querySelector('.match-container');
+  card.style.transition = 'transform 0.3s ease-out';
+  card.style.transform = 'translate(0, 0) rotate(0deg)';
+}
+
+let isFirstMatch = true;
+
+function showPopup(matchedName) {
+  const popup = document.getElementById('matchPopup');
+  const matchedNameSpan = document.getElementById('matchedName');
+
+  console.log("Matched name:", matchedName);
+
+  matchedNameSpan.textContent = matchedName;
+
+  // Ensure popup is hidden initially
+  popup.classList.add('hide');
+  popup.classList.remove('show');
+
+  // Set a small delay to allow the reflow
+  setTimeout(() => {
+    // Make sure the popup is displayed
+    popup.style.display = 'block';
+
+    // Trigger the show animation
+    setTimeout(() => {
+      popup.classList.add('show');
+      popup.classList.remove('hide');
+
+      // Check if it's the first match
+      if (isFirstMatch) {
+        // Show the "First Match" achievement notification
+        const firstMatchPopup = document.getElementById('firstMatchPopup');
+        firstMatchPopup.classList.add('show');
+        firstMatchPopup.classList.remove('hide');
+        localStorage.setItem('First Match', isFirstMatch);
+
+        setTimeout(() => {
+          firstMatchPopup.classList.add('hide');
+          firstMatchPopup.classList.remove('show');
+        }, 2000);
+
+        isFirstMatch = false; // Set isFirstMatch to false to prevent further triggers
+      }
+    }, 10); // Delay allows the browser to register the display change
+  }, 0);
+
+  // Hide the popup after 1 second
+  setTimeout(() => {
+    popup.classList.add('hide');
+    popup.classList.remove('show');
+  }, 1000);
+
+  // Set display to none after the hide animation
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 1300); // Ensure this happens after the hide transition
+}
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const hasReachedThirdMatch = localStorage.getItem('hasReachedThirdMatch');
+  if (hasReachedThirdMatch) {
+    redirectToChatWithThirdMatch();
+  } else {
+  updateProfile();
+  updateMatchCount();
+
+  document.querySelector(".skip-button").addEventListener("click", () => skipProfile('button'));
+  document.querySelector(".match-button").addEventListener("click", matchProfile);
+
+  const card = document.querySelector('.match-container');
   let isDragging = false;
   let startX, startY;
 
-  // Initialize the first profile on page load
-  updateProfile();
+  card.addEventListener('mousedown', startDragging);
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('mouseup', stopDragging);
 
-  // Event listener for Skip button
-  document
-    .querySelector(".skip-button")
-    .addEventListener("click", () => skipProfile("button"));
-
-  card.addEventListener("mousedown", startDragging);
-  document.addEventListener("mousemove", drag);
-  document.addEventListener("mouseup", stopDragging);
+  card.addEventListener('touchstart', startDraggingTouch);
+  card.addEventListener('touchmove', dragTouch);
+  card.addEventListener('touchend', stopDraggingTouch);
 
   function startDragging(e) {
     isDragging = true;
     startX = e.clientX;
     startY = e.clientY;
-    card.style.transition = "none";
+    card.style.transition = 'none';
   }
 
   function drag(e) {
@@ -118,9 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const moveX = Math.max(-maxMove, Math.min(maxMove, deltaX));
     const moveY = Math.max(-maxMove, Math.min(maxMove, deltaY));
 
-    card.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${
-      moveX * 0.1
-    }deg)`;
+    card.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.1}deg)`;
   }
 
   function stopDragging(e) {
@@ -133,42 +290,46 @@ document.addEventListener("DOMContentLoaded", function () {
     if (deltaX > threshold) {
       matchProfile();
     } else if (deltaX < -threshold) {
-      skipProfile("swipe");
+      skipProfile('swipe');
     } else {
       resetCardPosition();
     }
   }
 
-  function resetCardPosition() {
-    card.style.transition = "transform 0.3s ease-out";
-    card.style.transform = "translate(0, 0) rotate(0deg)";
+  function startDraggingTouch(e) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isDragging = true;
+    card.style.transition = 'none';
   }
 
-  function matchProfile() {
-    card.style.transition = "transform 0.5s ease-out, opacity 0.5s ease-out";
-    card.style.transform = "translate(200%, 0) rotate(45deg)";
-    card.style.opacity = "0";
+  function dragTouch(e) {
+    if (!isDragging) return;
 
-    setTimeout(() => {
-      nextProfile();
+    const deltaX = e.touches[0].clientX - startX;
+    const deltaY = e.touches[0].clientY - startY;
+
+    const maxMove = 100;
+    const moveX = Math.max(-maxMove, Math.min(maxMove, deltaX));
+    const moveY = Math.max(-maxMove, Math.min(maxMove, deltaY));
+
+    card.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.1}deg)`;
+  }
+
+  function stopDraggingTouch(e) {
+    if (!isDragging) return;
+    isDragging = false;
+
+    const deltaX = e.touches[0].clientX - startX;
+    const threshold = 50;
+
+    if (deltaX > threshold) {
+      matchProfile();
+    } else if (deltaX < -threshold) {
+      skipProfile('swipe');
+    } else {
       resetCardPosition();
-      card.style.opacity = "1";
-    }, 500);
-
-    console.log("It's a match!");
+    }
   }
-
-  function skipProfile(action) {
-    card.style.transition = "transform 0.5s ease-out, opacity 0.5s ease-out";
-    card.style.transform = "translate(-200%, 0) rotate(-45deg)";
-    card.style.opacity = "0";
-
-    setTimeout(() => {
-      nextProfile();
-      resetCardPosition();
-      card.style.opacity = "1";
-    }, 500);
-
-    console.log(`Profile skipped by ${action}`);
-  }
+}
 });

@@ -15,6 +15,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveProgressButton = document.getElementById("saveProgressButton");
   const loadButton = document.getElementById("loadButton");
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const bgMusic = document.getElementById("bg-music");
+
+    function playAudio() {
+      bgMusic
+        .play()
+        .then(() => {
+          bgMusic.muted = false;
+        })
+        .catch((error) => {
+          console.log("Audio playback failed:", error);
+        });
+    }
+
+    // Try playing audio immediately
+    playAudio();
+
+    // If autoplay fails, provide a fallback: wait for user interaction
+    document.body.addEventListener("click", function () {
+      // Only attempt to play if audio is not already playing
+      if (bgMusic.paused) {
+        playAudio();
+      }
+    });
+  });
+
   //  voice dialogue
   let yomp =
     '<a href="../html/tictactoe.html" style="color: white;">Tic Tac Toe</a>';
@@ -1051,253 +1077,300 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Check if the selected response is "Yeah, I think I need company right now"
     if (responseText === "Yeah, I think I need company right now") {
-        document.getElementById('phoneContainer').style.display = 'block';
-        document.getElementById('blockingLayer').style.display = 'block'; // Show blocking layer
-        triggercall();
+      document.getElementById("phoneContainer").style.display = "block";
+      document.getElementById("blockingLayer").style.display = "block"; // Show blocking layer
+      triggercall();
     }
 
     setTimeout(() => {
-        if (nextStage) {
-            console.log("Moving to next stage:", nextStage);
-            const stage = dialogues[currentDay][nextStage][0];
-            displayMessage(stage.text, stage.options, false);
-            currentStage = nextStage;
-        } else {
-            console.log("Conversation ended, currentDay:", currentDay);
-            if (currentDay === "day1") {
-                console.log("Day 1 ended, showing Start Day 2 button");
-                startDay2Button.style.display = "block";
-            } else if (currentDay === "day2") {
-                console.log("Day 2 ended, showing Start Day 3 button");
-                startDay3Button.style.display = "block";
-            } else if (currentDay === "day3") {
-                console.log("Day 3 ended, showing Start Day 4 button");
-                startDay4Button.style.display = "block";
-            } else if (currentDay === "day4") {
-                console.log("Day 4 ended, navigating to minigamepuzzle.html");
-                saveProgress();
-                window.location.href = "minigamepuzzle.html";
-            } else if (currentDay === "day5") {
-                console.log("Day 5 ended, navigating to minigame-keypad.html");
-                saveProgress();
-                window.location.href = "minigame-keypad.html";
-            }
-
-            // Autosave progress after each day
-            saveProgress();
-        }
-    }, 500);
-}
-
-
-
-function triggercall(){
-  const audioElement = document.getElementById('audio-element');
-        const microphoneBtn = document.getElementById('microphone-btn');
-        const replyOptions = document.querySelector('.reply-options');
-        const callingStatus = document.querySelector('.calling-status');
-        const callDuration = document.querySelector('.call-duration');
-        const startPrompt = document.getElementById('start-prompt');
-
-        const conversation = [
-            {
-                s: '/audio/stalker1.m4a',
-                p: ['Hi', 'Hey too', 'Thanks for calling']
-            },
-            {
-                s: '/audio/stalker2.m4a',
-                p: ['I could be better', 'I guess so', 'No…']
-            },
-            {
-                s: '/audio/stalker3.m4a',
-                p: ['Yeah, just keep the call', 'I\'m not sure', 'Can you sing for me?']
-            },
-            {
-                s: {
-                    1: '/audio/stalker4(1).m4a',
-                    2: '/audio/stalker4(2).m4a',
-                    3: '/audio/singing.mp3'
-                },
-                p: ['Yes, please']
-            },
-            {
-                s: '/audio/singing.mp3',
-                p: ['Wow… You have the voice of an angel. Thank you', 'Thanks for that', 'Are you sure you should be singing?']
-            },
-            {
-                s: '/audio/stalker5.m4a',
-                p: ['Since we know my day was terrible, how\'s yours?']
-            },
-            {
-                s: '/audio/stalker6.m4a',
-                p: [
-                    'That\'s nice. Can you make me one americano? I don\'t think I\'ll sleep tonight anyway',
-                    'I see. That\'s nice',
-                    'That\'s nice. At least a regular day is better than a bad day'
-                ]
-            },
-            {
-                s: {
-                    1: '/audio/stalker7(1).m4a',
-                    2: '/audio/stalker7(2).m4a',
-                    3: '/audio/stalker7(3).m4a'
-                },
-                p: ['Sorry for being so negative today. I think I better take a warm shower and sleep this off.']
-            },
-            {
-                s: '/audio/stalker8.m4a',
-                p: ['You\'re such a flirt… But really, thanks for the call. It helped cheer me up a little']
-            },
-            {
-                s: '/audio/stalker9.m4a',
-                p: ['See you tomorrow']
-            }
-        ];
-
-        let currentStep = 0;
-        let lastChoice = null;
-        let callTimer;
-        let callDurationSeconds = 0;
-
-        function updateCallDuration() {
-            callDurationSeconds++;
-            const minutes = Math.floor(callDurationSeconds / 60);
-            const seconds = callDurationSeconds % 60;
-            callDuration.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      if (nextStage) {
+        console.log("Moving to next stage:", nextStage);
+        const stage = dialogues[currentDay][nextStage][0];
+        displayMessage(stage.text, stage.options, false);
+        currentStage = nextStage;
+      } else {
+        console.log("Conversation ended, currentDay:", currentDay);
+        if (currentDay === "day1") {
+          console.log("Day 1 ended, showing Start Day 2 button");
+          startDay2Button.style.display = "block";
+        } else if (currentDay === "day2") {
+          console.log("Day 2 ended, showing Start Day 3 button");
+          startDay3Button.style.display = "block";
+        } else if (currentDay === "day3") {
+          console.log("Day 3 ended, showing Start Day 4 button");
+          startDay4Button.style.display = "block";
+        } else if (currentDay === "day4") {
+          console.log("Day 4 ended, navigating to minigamepuzzle.html");
+          saveProgress();
+          startDay5Button.style.display = "block";
+        } else if (currentDay === "day5") {
+          console.log("Day 5 ended, navigating to minigame-keypad.html");
+          saveProgress();
+          window.location.href = "minigame-keypad.html";
         }
 
-        function startCallTimer() {
-            callTimer = setInterval(updateCallDuration, 1000);
-        }
-
-        function stopCallTimer() {
-            clearInterval(callTimer);
-        }
-
-        function updateAudioSource(source) {
-            audioElement.src = source;
-            audioElement.load();
-        }
-
-        function displayOptions(options) {
-            replyOptions.innerHTML = '';
-            options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.textContent = option;
-                button.classList.add('reply-button');
-                button.disabled = true;
-                button.style.opacity = '0';
-                button.style.transform = 'translateY(20px)';
-                button.addEventListener('click', () => handleOptionClick(index));
-                replyOptions.appendChild(button);
-                setTimeout(() => {
-                    button.style.opacity = '1';
-                    button.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        }
-
-        function handleOptionClick(index) {
-            lastChoice = index + 1;
-            currentStep++;
-            if (currentStep < conversation.length) {
-                const step = conversation[currentStep];
-                callingStatus.textContent = 'John is speaking...';
-                replyOptions.style.opacity = '0';
-                replyOptions.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    if (typeof step.s === 'object') {
-                        updateAudioSource(step.s[lastChoice] || step.s[1]);
-                    } else {
-                        updateAudioSource(step.s);
-                    }
-                    playAudio();
-                    replyOptions.style.opacity = '1';
-                    replyOptions.style.transform = 'translateY(0)';
-                    displayOptions(step.p);
-                }, 1000);
-            } else {
-                endConversation();
-            }
-        }
-
-        function endConversation() {
-            callingStatus.textContent = 'Call ended';
-            replyOptions.innerHTML = '';
-            audioElement.src = '';
-            stopCallTimer();
-            microphoneBtn.classList.remove('active');
-        }
-
-        function playAudio() {
-            audioElement.play();
-            if (callDurationSeconds === 0) {
-                startCallTimer();
-            }
-            microphoneBtn.classList.add('active');
-        }
-
-        function enableOptions() {
-            const buttons = replyOptions.querySelectorAll('.reply-button');
-            buttons.forEach(button => {
-                button.disabled = false;
-            });
-            microphoneBtn.classList.remove('active');
-        }
-
-        window.addEventListener('load', () => {
-            startPrompt.classList.add('visible');
-        });
-
-        microphoneBtn.addEventListener('click', () => {
-            if (currentStep === 0) {
-                startConversation();
-                startPrompt.classList.remove('visible');
-            } else {
-                audioElement.play();
-            }
-        });
-
-        audioElement.addEventListener('ended', () => {
-            callingStatus.textContent = 'Your turn to speak';
-            enableOptions();
-        });
-
-        audioElement.addEventListener('play', () => {
-            if (audioElement.src.includes('singing.mp3')) {
-                const skipButton = document.createElement('button');
-                skipButton.textContent = 'Skip';
-                skipButton.classList.add('reply-button');
-                skipButton.addEventListener('click', () => {
-                    audioElement.currentTime = audioElement.duration - 1;
-                });
-                replyOptions.appendChild(skipButton);
-            }
-        });
-
-        function startConversation() {
-            updateAudioSource(conversation[0].s);
-            displayOptions(conversation[0].p);
-            callingStatus.textContent = 'John is calling...';
-            setTimeout(() => {
-                callingStatus.textContent = 'John is speaking...';
-                playAudio();
-            }, 2000);
-        }
-
-        function endConversation() {
-          callingStatus.textContent = 'Call ended';
-          replyOptions.innerHTML = '';
-          audioElement.src = '';
-          stopCallTimer();
-          microphoneBtn.classList.remove('active');
-      
-          // Hide the blocking layer when the call ends
-          document.getElementById('blockingLayer').style.display = 'none';
-          document.getElementById('phoneContainer').remove();
-          startDay4();
+        // Autosave progress after each day
+        saveProgress();
       }
-}
+    }, 500);
+  }
+
+  // phone call
+  function triggercall() {
+    const matchedName = localStorage.getItem("lastMatchedName");
+    const matchedImage = localStorage.getItem("lastMatchedImage");
+    const audioElement = document.getElementById("audio-element");
+    const microphoneBtn = document.getElementById("microphone-btn");
+    const replyOptions = document.querySelector(".reply-options");
+    const callingStatus = document.querySelector(".calling-status");
+    const callDuration = document.querySelector(".call-duration");
+    const startPrompt = document.getElementById("start-prompt");
+
+    if (matchedName && matchedImage) {
+      // Update the contact list with the matched profile's details
+      document.getElementById("contact-name").textContent = matchedName;
+      document.getElementById("contact-photo").src = matchedImage;
+    }
+
+    const conversation = [
+      {
+        s: "/audio/stalker1.m4a",
+        p: ["Hi", "Hey too", "Thanks for calling"],
+      },
+      {
+        s: "/audio/stalker2.m4a",
+        p: ["I could be better", "I guess so", "No…"],
+      },
+      {
+        s: "/audio/stalker3.m4a",
+        p: ["Yeah, just keep the call", "I'm not sure", "Can you sing for me?"],
+      },
+      {
+        s: {
+          1: "/audio/stalker4(1).m4a",
+          2: "/audio/stalker4(2).m4a",
+          3: "/audio/singing.mp3",
+        },
+        p: ["Yes, please"],
+      },
+      {
+        s: "/audio/singing.mp3",
+        p: [
+          "Wow… You have the voice of an angel. Thank you",
+          "Thanks for that",
+          "Are you sure you should be singing?",
+        ],
+      },
+      {
+        s: "/audio/stalker5.m4a",
+        p: ["Since we know my day was terrible, how's yours?"],
+      },
+      {
+        s: "/audio/stalker6.m4a",
+        p: [
+          "That's nice. Can you make me one americano? I don't think I'll sleep tonight anyway",
+          "I see. That's nice",
+          "That's nice. At least a regular day is better than a bad day",
+        ],
+      },
+      {
+        s: {
+          1: "/audio/stalker7(1).m4a",
+          2: "/audio/stalker7(2).m4a",
+          3: "/audio/stalker7(3).m4a",
+        },
+        p: [
+          "Sorry for being so negative today. I think I better take a warm shower and sleep this off.",
+        ],
+      },
+      {
+        s: "/audio/stalker8.m4a",
+        p: [
+          "You're such a flirt… But really, thanks for the call. It helped cheer me up a little",
+        ],
+      },
+      {
+        s: "/audio/stalker9.m4a",
+        p: ["See you tomorrow"],
+      },
+    ];
+
+    let currentStep = 0;
+    let lastChoice = null;
+    let callTimer;
+    let callDurationSeconds = 0;
+
+    function updateCallDuration() {
+      callDurationSeconds++;
+      const minutes = Math.floor(callDurationSeconds / 60);
+      const seconds = callDurationSeconds % 60;
+      callDuration.textContent = `${minutes
+        .toString()
+        .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    }
+
+    function startCallTimer() {
+      callTimer = setInterval(updateCallDuration, 1000);
+    }
+
+    function stopCallTimer() {
+      clearInterval(callTimer);
+    }
+
+    function updateAudioSource(source) {
+      audioElement.src = source;
+      audioElement.load();
+    }
+
+    function displayOptions(options) {
+      replyOptions.innerHTML = "";
+      options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("reply-button");
+        button.disabled = true;
+        button.style.opacity = "0";
+        button.style.transform = "translateY(20px)";
+        button.addEventListener("click", () => handleOptionClick(index));
+        replyOptions.appendChild(button);
+        setTimeout(() => {
+          button.style.opacity = "1";
+          button.style.transform = "translateY(0)";
+        }, index * 100);
+      });
+    }
+
+    function handleOptionClick(index) {
+      lastChoice = index + 1;
+      currentStep++;
+      if (currentStep < conversation.length) {
+        const step = conversation[currentStep];
+        callingStatus.textContent = `${matchedName} is calling...`;
+        replyOptions.style.opacity = "0";
+        replyOptions.style.transform = "translateY(20px)";
+        setTimeout(() => {
+          if (typeof step.s === "object") {
+            updateAudioSource(step.s[lastChoice] || step.s[1]);
+          } else {
+            updateAudioSource(step.s);
+          }
+          playAudio();
+          replyOptions.style.opacity = "1";
+          replyOptions.style.transform = "translateY(0)";
+          displayOptions(step.p);
+        }, 1000);
+      } else {
+        endConversation();
+      }
+    }
+
+    function endConversation() {
+      callingStatus.textContent = "Call ended";
+      replyOptions.innerHTML = "";
+      audioElement.src = "";
+      stopCallTimer();
+      microphoneBtn.classList.remove("active");
+    }
+
+    function playAudio() {
+      audioElement.play();
+      if (callDurationSeconds === 0) {
+        startCallTimer();
+      }
+      microphoneBtn.classList.add("active");
+    }
+
+    function enableOptions() {
+      const buttons = replyOptions.querySelectorAll(".reply-button");
+      buttons.forEach((button) => {
+        button.disabled = false;
+      });
+      microphoneBtn.classList.remove("active");
+    }
+
+    window.addEventListener("load", () => {
+      startPrompt.classList.add("visible");
+    });
+
+    microphoneBtn.addEventListener("click", () => {
+      if (currentStep === 0) {
+        startConversation();
+        startPrompt.classList.remove("visible");
+      } else {
+        audioElement.play();
+      }
+    });
+
+    audioElement.addEventListener("ended", () => {
+      callingStatus.textContent = "Your turn to speak";
+      enableOptions();
+    });
+
+    audioElement.addEventListener("play", () => {
+      if (audioElement.src.includes("singing.mp3")) {
+        const skipButton = document.createElement("button");
+        skipButton.textContent = "Skip";
+        skipButton.classList.add("reply-button");
+        skipButton.addEventListener("click", () => {
+          audioElement.currentTime = audioElement.duration - 1;
+        });
+        replyOptions.appendChild(skipButton);
+      }
+    });
+
+    function startConversation() {
+      updateAudioSource(conversation[0].s);
+      displayOptions(conversation[0].p);
+      callingStatus.textContent = `${matchedName} is calling...`;
+      setTimeout(() => {
+        callingStatus.textContent = `${matchedName} is speaking...`;
+        playAudio();
+      }, 2000);
+    }
+
+    function endConversation() {
+      callingStatus.textContent = "Call ended";
+      replyOptions.innerHTML = "";
+      audioElement.src = "";
+      stopCallTimer();
+      microphoneBtn.classList.remove("active");
+
+      // Hide the blocking layer when the call ends
+      document.getElementById("blockingLayer").remove();
+      document.getElementById("phoneContainer").remove();
+
+      // Reset the response options to their default styling
+      const responseOptions = document.querySelector(".response-options");
+      responseOptions.style.display = "flex";
+      responseOptions.style.flexDirection = "column";
+      responseOptions.style.gap = "10px";
+
+      const responseButtons = document.querySelectorAll(".response-button");
+      responseButtons.forEach((button) => {
+        button.style.padding = "10px 20px";
+        button.style.borderRadius = "20px";
+        button.style.border = "none";
+        button.style.background = "#c71585";
+        button.style.color = "#fff";
+        button.style.cursor = "pointer";
+        button.style.fontSize = "14px";
+        button.style.textAlign = "center";
+        button.style.transition =
+          "background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease";
+      });
+
+      const responseButtonsHover = document.querySelectorAll(
+        ".response-button:hover"
+      );
+      responseButtonsHover.forEach((button) => {
+        button.style.background = "#a52a2a";
+        button.style.transform = "scale(1.03)";
+        button.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+      });
+
+      startDay4();
+    }
+  }
 
   function startDay2() {
     console.log("Starting Day 2");
@@ -1324,18 +1397,18 @@ function triggercall(){
     currentDay = "day4";
     currentStage = "start";
     const newDayStage = dialogues[currentDay][currentStage][0];
-     // Display the chat container again if it was hidden
-     const chatContainer = document.querySelector('.chat-container');
-     if (chatContainer) {
-         chatContainer.style.display = 'flex';
-     }
- 
-     // Reset the response options
-     responseOptions.style.display = "block";
+    // Display the chat container again if it was hidden
+    const chatContainer = document.querySelector(".chat-container");
+    if (chatContainer) {
+      chatContainer.style.display = "flex";
+    }
+
+    // Reset the response options
+    responseOptions.style.display = "block";
 
     displayMessage("--- Next Day ---", [], false);
     displayMessage(newDayStage.text, newDayStage.options, false);
-}
+  }
 
   function startDay5() {
     console.log("Starting Day 5");
@@ -1351,10 +1424,10 @@ function triggercall(){
 
   // Add this to your existing event listeners
 
-// Add this to your existing event listeners
-loadButton.addEventListener("click", () => {
-  window.location.href = "save-slots.html";
-});
+  // Add this to your existing event listeners
+  loadButton.addEventListener("click", () => {
+    window.location.href = "save-slots.html";
+  });
 
   function saveProgress() {
     const progressData = {
@@ -1411,20 +1484,6 @@ loadButton.addEventListener("click", () => {
     const initialStage = dialogues[currentDay][currentStage][0];
     displayMessage(initialStage.text, initialStage.options, false);
   }
-
-  window.startDay5 = function () {
-    console.log("Starting Day 5");
-    currentDay = "day5";
-    currentStage = "start";
-    const newDayStage = dialogues[currentDay][currentStage][0];
-
-    displayMessage("--- Next Day ---", [], false);
-    displayMessage(newDayStage.text, newDayStage.options, false);
-    startDay5Button.style.display = "none";
-
-    // Save progress for day 5
-    saveProgress();
-  };
 
   startDay2Button.addEventListener("click", startDay2);
   startDay3Button.addEventListener("click", startDay3);

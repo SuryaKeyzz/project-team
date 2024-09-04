@@ -10,58 +10,42 @@
     <div class="chat-container">
       <div class="contacts-list">
         <div class="search-container">
-          <input
-            type="text"
-            id="searchContacts"
-            placeholder="Search contacts..."
-          />
+          <input type="text" id="searchContacts" placeholder="Search contacts..." />
           <i class="search-icon">&#128269;</i>
-          <!-- Magnifying glass icon -->
         </div>
         <div class="contact-list-content">
-          <!-- Contacts list content -->
-          <div class="contact" id="stalkerContact">
-            <img src="../img/character2.png" alt="Stalker" />
+          <!-- Matched Contact -->
+          <div class="contact" id="matchedContact">
+            <a href="../html/minigame puzzle.html" id="matchedContactLink">
+              <img src="" alt="Matched Contact" id="matchedContactImage" class="sparkle-border" />
+            </a>
             <div class="contact-info">
-              <h3>Stalker</h3>
+              <h3 id="matchedContactName">Matched Contact</h3>
               <p>Online</p>
-            </div>
-          </div>
-          <div class="contact unclickable" id="nickContact">
-            <img src="nick.jpg" alt="Nick" />
-            <div class="contact-info">
-              <h3>Nick</h3>
-              <p>Offline</p>
             </div>
           </div>
         </div>
       </div>
       <div class="chat-window">
         <div class="chat-header">
-          <img src="../img/character2.png" alt="Stalker" />
-          <h2>Stalker</h2>
+          <a href="../html/minigame puzzle.html" id="chatContactLink">
+            <img src="" alt="Matched Contact" id="chatContactImage" class="sparkle-border" />
+          </a>
+          <h2 id="chatContactName">Matched Contact</h2>
         </div>
         <div class="chat-messages">
           <!-- Messages will be injected here -->
         </div>
         <div class="chat-input">
-          <input
-            type="text"
-            id="messageInput"
-            placeholder="Type a message..."
-            disabled
-          />
+          <input type="text" id="messageInput" placeholder="Type a message..." disabled />
           <button id="sendButton" disabled>Send</button>
         </div>
-        <div class="response-options" id="responseOptions">
-          <!-- Response buttons will be injected here -->
-        </div>
+        <div class="response-options" id="responseOptions"></div>
         <button id="startDay2Button">Start Day 2</button>
         <button id="startDay3Button" style="display: none;">Start Day 3</button>
         <button id="startDay4Button">Start Day 4</button>
         <button id="startDay5Button">Start Day 5</button>
         <button id="loadButton">Load Game</button>
-       
       </div>
     </div>
 
@@ -80,7 +64,7 @@
               <div class="call-interface">
                   <div class="call-header">
                       <div class="contact-photo-container">
-                          <img src="../img/character2.png" alt="John Doe" class="contact-photo">
+                          <img src="" alt="John Doe" class="contact-photo" id="contact-photo">
                       </div>
                       <div class="contact-info">
                           <h2 id="contact-name" class="contact-name">John Doe</h2>
@@ -105,9 +89,45 @@
 
   <audio id="audio-element"></audio>
   <div id="blockingLayer" class="blocking-layer"></div>
+  <audio id="bg-music" loop src="../audio/Chatting Page - 11pm Animal Crossing Wild World.mp3">
+  </audio>
 
 
 
     <script src="../javascript/chat-script.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const bgMusic = document.getElementById('bg-music');
+        
+        function playAudio() {
+          bgMusic.play().catch((error) => {
+            console.log('Audio playback failed:', error);
+          });
+        }
+    
+        // Try to play the audio on page load
+        playAudio();
+    
+        // Also play the audio on the first user interaction
+        document.body.addEventListener('click', playAudio);
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve the last matched name and image from localStorage
+        const matchedName = localStorage.getItem('lastMatchedName');
+        const matchedImage = localStorage.getItem('lastMatchedImage');
+
+        if (matchedName && matchedImage) {
+          // Update the contact list with the matched profile's details
+          document.getElementById('matchedContactName').textContent = matchedName;
+          document.getElementById('matchedContactImage').src = matchedImage;
+
+          // Update the chat window with the matched profile's details
+          document.getElementById('chatContactName').textContent = matchedName;
+          document.getElementById('chatContactImage').src = matchedImage;
+        }
+      });
+    </script>
   </body>
 </html>

@@ -102,10 +102,13 @@ function typeText2() {
   }
 }
 
+let backgroundAudio = document.getElementById('backgroundAudio');
+
 function showContent() {
   document.getElementById("loadingScreen").classList.add("hidden");
   document.querySelector(".container").style.display = "block";
   document.body.style.overflow = "auto";
+  backgroundAudio.play(); // Play the background audio on page load
 }
 
 window.onload = function () {

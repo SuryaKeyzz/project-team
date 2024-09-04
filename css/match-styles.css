@@ -125,5 +125,50 @@ body {
     animation: fadeIn 0.8s ease-out, bounceIn 0.8s ease-out;
     opacity: 1;
     transform: translateY(0);
-}
+} 
+ 
+.match-count {
+    text-align: center; 
+    font-size: 18px; 
+    color: white; 
+    margin-bottom: 15px; 
+  }
+
+  .popup {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 20px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 400px;
+  }
+
+  .popup:hover {
+    transform: translate(-50%, -50%) scale(1.02);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  }
+  .popup.hide {
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  
+  .popup.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    color: palevioletred;
+  }
+  
+
 match-styles.css

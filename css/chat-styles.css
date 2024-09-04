@@ -211,13 +211,11 @@ body {
 
 /* Optional: Add labels for sender */
 .message.sent::before {
-    content: "You: ";
     font-weight: bold;
     color: #c71585; /* A color that matches the theme */
 }
 
 .message.received::before {
-    content: "Stalker: ";
     font-weight: bold;
     color: #bbb; /* A lighter color for contrast */
 }
