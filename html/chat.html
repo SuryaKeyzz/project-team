@@ -89,29 +89,12 @@
 
   <audio id="audio-element"></audio>
   <div id="blockingLayer" class="blocking-layer"></div>
-  <audio id="bg-music" loop src="../audio/Chatting Page - 11pm Animal Crossing Wild World.mp3">
-  </audio>
+  <!-- <audio id="bg-music" loop src="../audio/Chatting Page - 11pm Animal Crossing Wild World.mp3">
+  </audio> -->
 
 
 
     <script src="../javascript/chat-script.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const bgMusic = document.getElementById('bg-music');
-        
-        function playAudio() {
-          bgMusic.play().catch((error) => {
-            console.log('Audio playback failed:', error);
-          });
-        }
-    
-        // Try to play the audio on page load
-        playAudio();
-    
-        // Also play the audio on the first user interaction
-        document.body.addEventListener('click', playAudio);
-      });
-    </script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Retrieve the last matched name and image from localStorage

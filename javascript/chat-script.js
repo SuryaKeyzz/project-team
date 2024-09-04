@@ -15,31 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveProgressButton = document.getElementById("saveProgressButton");
   const loadButton = document.getElementById("loadButton");
 
-  document.addEventListener("DOMContentLoaded", function () {
-    const bgMusic = document.getElementById("bg-music");
-
-    function playAudio() {
-      bgMusic
-        .play()
-        .then(() => {
-          bgMusic.muted = false;
-        })
-        .catch((error) => {
-          console.log("Audio playback failed:", error);
-        });
-    }
-
-    // Try playing audio immediately
-    playAudio();
-
-    // If autoplay fails, provide a fallback: wait for user interaction
-    document.body.addEventListener("click", function () {
-      // Only attempt to play if audio is not already playing
-      if (bgMusic.paused) {
-        playAudio();
-      }
-    });
-  });
 
   //  voice dialogue
   let yomp =
@@ -1134,27 +1109,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const conversation = [
       {
-        s: "/audio/stalker1.m4a",
+        s: "../audio/stalker1.m4a",
         p: ["Hi", "Hey too", "Thanks for calling"],
       },
       {
-        s: "/audio/stalker2.m4a",
+        s: "../audio/stalker2.m4a",
         p: ["I could be better", "I guess so", "No…"],
       },
       {
-        s: "/audio/stalker3.m4a",
+        s: "../audio/stalker3.m4a",
         p: ["Yeah, just keep the call", "I'm not sure", "Can you sing for me?"],
       },
       {
         s: {
-          1: "/audio/stalker4(1).m4a",
-          2: "/audio/stalker4(2).m4a",
-          3: "/audio/singing.mp3",
+          1: "../audio/stalker4(1).m4a",
+          2: "../audio/stalker4(2).m4a",
+          3: "../audio/singing.mp3",
         },
         p: ["Yes, please"],
       },
       {
-        s: "/audio/singing.mp3",
+        s: "../audio/Singing.mp3",
         p: [
           "Wow… You have the voice of an angel. Thank you",
           "Thanks for that",
@@ -1162,11 +1137,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
       },
       {
-        s: "/audio/stalker5.m4a",
+        s: "../audio/stalker5.m4a",
         p: ["Since we know my day was terrible, how's yours?"],
       },
       {
-        s: "/audio/stalker6.m4a",
+        s: "../audio/stalker6.m4a",
         p: [
           "That's nice. Can you make me one americano? I don't think I'll sleep tonight anyway",
           "I see. That's nice",
@@ -1175,22 +1150,22 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         s: {
-          1: "/audio/stalker7(1).m4a",
-          2: "/audio/stalker7(2).m4a",
-          3: "/audio/stalker7(3).m4a",
+          1: "../audio/stalker7(1).m4a",
+          2: "../audio/stalker7(2).m4a",
+          3: "../audio/stalker7(3).m4a",
         },
         p: [
           "Sorry for being so negative today. I think I better take a warm shower and sleep this off.",
         ],
       },
       {
-        s: "/audio/stalker8.m4a",
+        s: "../audio/stalker8.m4a",
         p: [
           "You're such a flirt… But really, thanks for the call. It helped cheer me up a little",
         ],
       },
       {
-        s: "/audio/stalker9.m4a",
+        s: "../audio/stalker9.m4a",
         p: ["See you tomorrow"],
       },
     ];
@@ -1307,7 +1282,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     audioElement.addEventListener("play", () => {
-      if (audioElement.src.includes("singing.mp3")) {
+      if (audioElement.src.includes("Singing.mp3")) {
         const skipButton = document.createElement("button");
         skipButton.textContent = "Skip";
         skipButton.classList.add("reply-button");
