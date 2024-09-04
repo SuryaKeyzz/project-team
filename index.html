@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <style>
+      @keyframes autoRun {
+          from {
+              left: 100%;
+          }
+          to {
+              left: calc(var(--width) * -1);
+          }
+      }
+      @keyframes reversePlay {
+          from {
+              left: calc(var(--width) * -1);
+          }
+          to {
+              left: 100%;
+          }
+      }
+
+      .slider-container {
+        will-change: transform;
+    }
+
+  </style>
+    <title>Homepage</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header class="absolute top-0 left-0 w-full flex items-center z-10 bg-transparent transition-colors duration-300">
+      <div class="container">
+        <div class="flex items-center justify-between relative">
+          <div class="px-4">
+            <a href="#" class="text-primary font-bold text-lg block py-6">
+              <img src="./img/logoSparks.svg" alt="Logo" class="" />
+            </a>
+          </div>
+          <div class="flex items-center px-4">
+            <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
+              <span class="hamburger-line origin-top-left transition duration-300 ease-in-out"></span>
+              <span class="hamburger-line transition duration-300 ease-in-out"></span>
+              <span class="hamburger-line origin-bottom-left transition duration-300 ease-in-out"></span>
+            </button>
+            <nav id="nav-menu" class="hidden absolute py-5 bg-dark shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none">
+              <ul class="block lg:flex">
+                <li class="group relative">
+                  <a href="#hero" class="text-base py-2 mx-8 flex group-hover:text-[#58a59a] text-white relative font-bold">Home</a>
+                  <span class="lg:absolute lg:left-1/2 lg:bottom-0 lg:h-[2px] lg:w-0 lg:bg-white lg:transition-all lg:duration-300 lg:ease-out lg:group-hover:left-0 lg:group-hover:w-full"></span>
+                </li>
+                <li class="group relative">
+                  <a href="#about" class="text-base py-2 mx-8 flex group-hover:text-[#58a59a] text-white relative font-bold">About</a>
+                  <span class="lg:absolute lg:left-1/2 lg:bottom-0 lg:h-[2px] lg:w-0 lg:bg-white lg:transition-all lg:duration-300 lg:ease-out lg:group-hover:left-0 lg:group-hover:w-full"></span>
+                </li>
+                <li class="group relative">
+                  <a href="#Guide" class="text-base py-2 mx-8 flex group-hover:text-[#58a59a] text-white relative font-bold">Guide</a>
+                  <span class="lg:absolute lg:left-1/2 lg:bottom-0 lg:h-[2px] lg:w-0 lg:bg-white lg:transition-all lg:duration-300 lg:ease-out lg:group-hover:left-0 lg:group-hover:w-full"></span>
+                </li>
+                <li class="group relative">
+                  <a href="#Minigames" class="text-base py-2 mx-8 flex group-hover:text-[#58a59a] text-white relative font-bold">Minigames</a>
+                  <span class="lg:absolute lg:left-1/2 lg:bottom-0 lg:h-[2px] lg:w-0 lg:bg-white lg:transition-all lg:duration-300 lg:ease-out lg:group-hover:left-0 lg:group-hover:w-full"></span>
+                </li>
+                <li class="group relative">
+                  <a href="#credits" class="text-base py-2 mx-8 flex group-hover:text-[#58a59a] text-white relative font-bold">Credits</a>
+                  <span class="lg:absolute lg:left-1/2 lg:bottom-0 lg:h-[2px] lg:w-0 lg:bg-white lg:transition-all lg:duration-300 lg:ease-out lg:group-hover:left-0 lg:group-hover:w-full"></span>
+                </li>
+                <li class="group relative ml-4">
+                 
+                    <button type="button" class="text-base text-slate-900 shadow-sm hover:text-white bg-transparent py-2 px-6 rounded-lg hover:bg-green-500 transition border-2" id="loginButton">Login</button>
+                 
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section
+      id="hero"
+      class="relative pt-36 overflow-hidden h-screen bg-gradient-to-b from-pink-500 to-black"
+    >
+      <div
+        class="container relative z-10 mt-[7em] md:mt-[12em] mx-auto flex items-center justify-center h-full"
+      >
+        <a href="./html/setup-profile.html">
+          <button
+            id="Play"
+            class="text-slate-600 hover:text-black px-12 md:px-36 py-4 rounded-full text-3xl bg-transparent hover:bg-slate-200 border-2 border-white transition duration-300 hover:font-bold"
+          >
+            Play
+          </button>
+        </a>
+      </div>
+
+      <video
+        id="background-video"
+        class="absolute top-0 left-0 w-full h-full object-cover z-0"
+        autoplay
+        muted
+        loop
+      >
+        <source src="./img/background.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <section
+      id="about"
+      class="pt-36 bg-gradient-to-t from-white to-[#c9b0d7] text-white"
+    >
+      <div class="container">
+        <div class="w-full px-4">
+          <div class="max-w-xl mx-auto text-center mb-16">
+            <h4 class="font-semibold text-lg text-primary mb-2">About Us</h4>
+            <h2
+              class="font-bold text-white text-3xl mb-4 sm:text-4xl lg:text-5xl"
+            >
+              Our Teams
+            </h2>
+            <p class="font-medium text-slate-400 text-md md:text-lg">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              ratione, vel itaque ab non minima.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-10">
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img
+                src="./img/Chelsea/chelsea.jpg"
+                alt="Chelsea"
+                class="w-full"
+              />
+              <div class="py-8 px-6 text-center">
+                <h3>
+                  <a
+                    href="./html/Chelsea.html"
+                    class="block mb-3 font-semibold text-2xl text-dark hover:text-primary truncate dark:text-white"
+                    >Chelsea</a
+                  >
+                </h3>
+                <h4>
+                  <a
+                    href="./html/Chelsea.html"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                    >(CEO)</a
+                  >
+                </h4>
+                <p class="font-medium text-base text-secondary mb-6">
+                 
+                </p>
+                <a
+                  href="./html/Chelsea.html"
+                  class="font-medium text-sm bg-primary py-2 px-4 rounded-lg text-white hover:opacity-80"
+                  >Click Me!</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img src="./img/Gilbert/gilbert.jpg" alt="李星光" class="w-4/4" />
+              <div class="py-8 px-6 text-center">
+                <h3>
+                  <a
+                    href="./html/Gilbert.html"
+                    class="block mb-3 font-semibold text-2xl text-dark hover:text-primary truncate dark:text-white"
+                    >Gilbert Demetrio Suryali</a
+                  >
+                </h3>
+                <h4>
+                  <a
+                    href="./html/Gilbert.html"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                    >(CTO)</a
+                  >
+                </h4>
+                <p class="font-medium text-base text-secondary mb-6">
+                  
+                </p>
+                <a
+                  href="./html/Gilbert.html"
+                  class="font-medium text-sm bg-primary py-2 px-4 rounded-lg text-white hover:opacity-80"
+                  >Click Me!</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Centering the last two cards -->
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3 flex justify-center">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img src="./img/Kezia/kezia.jpg" alt="Keyzia" class="w-full" />
+              <div class="py-8 px-6 text-center">
+                <h3>
+                  <a
+                    href="./html/Keyzia.html"
+                    class="block mb-3 font-semibold text-2xl text-dark hover:text-primary truncate dark:text-white"
+                    >Kezia</a
+                  >
+                </h3>
+                <h4>
+                  <a
+                    href="./html/Keyzia.html"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                    >(CIO)</a
+                  >
+                </h4>
+                <p class="font-medium text-base text-secondary mb-6">
+                  
+                </p>
+                <a
+                  href="./html/Keyzia.html"
+                  class="font-medium text-sm bg-primary py-2 px-4 rounded-lg text-white hover:opacity-80"
+                  >Click Me!</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3 flex justify-center">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img
+                src="./img/Halbert/halbert.jpg"
+                alt="Halbert"
+                class="w-full"
+              />
+              <div class="py-8 px-6 text-center">
+                <h3>
+                  <a
+                    href="./html/Halbert.html"
+                    class="block mb-3 font-semibold text-2xl text-dark hover:text-primary truncate dark:text-white"
+                    >Halbert</a
+                  >
+                </h3>
+                <h4>
+                  <a
+                    href="#"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                    >(Programmer)</a
+                  >
+                </h4>
+                <p class="font-medium text-base text-secondary mb-6">
+                  
+                </p>
+                <a
+                  href="./html/Halbert.html"
+                  class="font-medium text-sm bg-primary py-2 px-4 rounded-lg text-white hover:opacity-80"
+                  >Click Me!</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3 flex justify-center">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img src="./img/Davin/davin.jpg" alt="Halbert" class="w-full" />
+              <div class="py-8 px-6 text-center">
+                <h3>
+                  <a
+                    href="./html/Davin.html"
+                    class="block mb-3 font-semibold text-2xl text-dark hover:text-primary truncate dark:text-white"
+                    >Davin</a
+                  >
+                </h3>
+                <h4>
+                  <a
+                    href="./html/Davin.html"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                    >(Programmer)</a
+                  >
+                </h4>
+                <p class="font-medium text-base text-secondary mb-6">
+                 
+                </p>
+                <a
+                  href="./html/Davin.html"
+                  class="font-medium text-sm bg-primary py-2 px-4 rounded-lg text-white hover:opacity-80"
+                  >Click Me!</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Match" class="pt-24 pb-16 bg-white relative">
+      <div class="container mx-auto text-center">
+        <!-- Heading -->
+        <h4 class="text-primary font-semibold text-sm uppercase mb-2">
+          Match Your Lifestyle
+        </h4>
+        <h2 class="text-4xl font-bold text-dark mb-4">Smart Match Feed</h2>
+        <p class="text-slate-500 mb-12">
+          Personalized feed based on your lifestyle & preferences. The more you
+          use Aura, the smarter it gets! Matching people based on just looks is
+          now a thing of the past! Aura matches people with similar
+          lifestyles...
+        </p>
+
+        <!-- Cards -->
+        <div class="flex justify-center space-x-8">
+          <!-- Card 1 -->
+          <div
+            class="relative w-64 h-96 rounded-xl overflow-hidden shadow-lg transform rotate-6"
+          >
+            <img
+              src="./img/character3.png"
+              alt="Bella"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-4 left-4 text-white">
+              <h3 class="text-lg font-semibold">Bella, 28</h3>
+              <p>7 kilometers away</p>
+              <p>5 common places</p>
+            </div>
+            <div class="absolute bottom-4 right-4 flex space-x-2 flex-col">
+              <button
+                class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center ml-2 mb-2"
+              >
+                ⚡
+              </button>
+              <button
+                class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center"
+              >
+                ★
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="relative w-64 h-96 rounded-xl overflow-hidden shadow-lg transform -rotate-6"
+          >
+            <img
+              src="./img/character2.png"
+              alt="Carlos"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-4 left-4 text-white">
+              <h3 class="text-lg font-semibold">Carlos, 27</h3>
+              <p>7 kilometers away</p>
+              <p>5 common places</p>
+            </div>
+            <div class="absolute bottom-4 right-4 flex space-x-4 flex-col">
+              <button
+                class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center ml-4 mb-2"
+              >
+                ⚡
+              </button>
+              <button
+                class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center"
+              >
+                ★
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="hidden 2xl:block absolute md:top-[8em] md:left-[6em] 2xl:top-[7em] 2xl:left-[12.9em] lg:top-[7em] lg:left-[7.5em] transform -translate-x-20 -translate-y-1/2 text-red-500 text-6xl animate-bounce"
+          >
+            ❤️
+          </div>
+        </div>
+
+        <!-- Floating Love Emotes -->
+        <div
+          class="absolute top-24 left-2 lg:top-10 lg:left-10 text-red-500 text-3xl animate-bounce"
+        >
+          ❤️
+        </div>
+        <div
+          class="hidden lg:block lg:absolute top-36 left-10 lg:top-24 lg:left-24 text-red-500 text-3xl animate-bounce"
+        >
+          ❤️
+        </div>
+        <div
+          class="hidden lg:block lg:absolute top-36 right-10 lg:top-24 lg:right-24 text-red-500 text-3xl animate-bounce"
+        >
+          ❤️
+        </div>
+        <div
+          class="absolute top-24 right-2 lg:top-10 lg:right-10 text-red-500 text-3xl animate-bounce"
+        >
+          ❤️
+        </div>
+      </div>
+    </section>
+
+    <section id="Guide" class="py-44">
+      <div class="container mx-auto">
+        <!-- Section Title -->
+        <h4
+          class="text-primary font-semibold text-sm uppercase mb-2 text-center"
+        >
+          Guidelines
+        </h4>
+        <h2 class="text-4xl font-bold text-gray-800 mb-6 text-center">
+          How It Works
+        </h2>
+
+        <div class="flex flex-col md:flex-row items-center">
+          <!-- Left Side (Phone Image) -->
+          <div class="w-full md:w-1/2 flex justify-center md:justify-start">
+            <img
+              src="./img/phone.svg"
+              alt="Phone"
+              class="w-72 md:w-80 lg:w-96"
+            />
+          </div>
+
+          <!-- Right Side (How It Works) -->
+          <div class="w-full md:w-1/2 mt-10 md:mt-0">
+            <div class="grid grid-cols-1 gap-8">
+              <!-- Item 1 -->
+              <div class="flex items-center">
+                <div
+                  class="w-16 h-16 flex items-center justify-center bg-red-100 rounded-full mr-4"
+                >
+                  <!-- Icon -->
+                  <svg
+                    class="w-8 h-8 text-red-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.344l1.172-1.172a4 4 0 115.656 5.656L10 18l-6.828-6.828a4 4 0 010-5.656z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-800">
+                    Ideal Relationship
+                  </h3>
+                  <p class="text-gray-600">
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem.
+                  </p>
+                </div>
+              </div>
+              <!-- Item 2 -->
+              <div class="flex items-center">
+                <div
+                  class="w-16 h-16 flex items-center justify-center bg-pink-100 rounded-full mr-4"
+                >
+                  <!-- Icon -->
+                  <svg
+                    class="w-8 h-8 text-pink-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.344l1.172-1.172a4 4 0 115.656 5.656L10 18l-6.828-6.828a4 4 0 010-5.656z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-800">
+                    Dating With Benefits
+                  </h3>
+                  <p class="text-gray-600">
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem.
+                  </p>
+                </div>
+              </div>
+              <!-- Item 3 -->
+              <div class="flex items-center">
+                <div
+                  class="w-16 h-16 flex items-center justify-center bg-yellow-100 rounded-full mr-4"
+                >
+                  <!-- Icon -->
+                  <svg
+                    class="w-8 h-8 text-yellow-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M3.172 5.172a4 4 0 015.656 0L10 6.344l1.172-1.172a4 4 0 115.656 5.656L10 18l-6.828-6.828a4 4 0 010-5.656z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-800">
+                    Date Beautiful Peoples
+                  </h3>
+                  <p class="text-gray-600">
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Minigames" class="py-32 bg-gradient-to-b from-white to-slate-200">
+      <div class="max-w-screen-xl mx-auto text-center px-4 lg:px-0">
+        <h2 class="text-4xl font-bold mb-2">
+          Our <span class="text-pink-500">Minigames
+        </h2>
+        <p class="text-lg text-gray-600 mb-12">
+          We committed to helping singles find love every day and we are
+          confident in our ability to do so. eharmony matches single
+        </p>
+
+        <div class="flex flex-wrap">
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img src="./img/article1.jpg" alt="programming" class="w-full" />
+              <div class="py-8 px-6">
+                <h3>
+                  <a
+                    href="#"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                    >Tic Tac Toe</a
+                  >
+                </h3>
+                <p class="font-medium text-base text-secondary mb-6">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Unde, soluta.
+                </p>
+                <a
+                  href="./html/tictactoe.html"
+                  class="text-pink-500 font-medium flex items-center"
+                  >Read More <span class="ml-2 text-xl">&rarr;</span></a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img
+                src="./img/article2.jpg"
+                alt="Mechanical Keyboard"
+                class="w-full"
+              />
+              <div class="py-8 px-6">
+                <h3>
+                  <a
+                    href="./html/minigamepuzzle.html"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                  >
+                    Memory Game</a
+                  >
+                </h3>
+                <p class="font-medium text-base text-secondary mb-6">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+                  aperiam aliquam perspiciatis?
+                </p>
+                <a href="./html/minigamepuzzle.html" class="text-pink-500 font-medium flex items-center"
+                  >Read More <span class="ml-2 text-xl">&rarr;</span></a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="w-full px-4 lg:w-1/2 xl:w-1/3">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-lg mb-10 dark:bg-slate-800"
+            >
+              <img src="./img/article3.jpg" alt="programming" class="w-full" />
+              <div class="py-8 px-6">
+                <h3>
+                  <a
+                    href="./html/minigame-keypad.html"
+                    class="block mb-3 font-semibold text-xl text-dark hover:text-primary truncate dark:text-white"
+                    >Number games</a
+                  >
+                </h3>
+                <p class="font-medium text-base text-secondary mb-6">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Obcaecati magni voluptatum excepturi minus aspernatur qui
+                  adipisci?
+                </p>
+                <a href="./html/minigame-keypad.html" class="text-pink-500 font-medium flex items-center"
+                  >Read More <span class="ml-2 text-xl">&rarr;</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="mt-12 px-6 py-3 bg-pink-500 text-white font-semibold rounded-full hover:bg-pink-600 transition duration-300"
+        >
+          View more articles
+        </button>
+      </div>
+    </section>
+
+    <section id="sub-hero" class="h-screen">
+      <div class="slider-backgroundimage relative w-screen h-screen overflow-hidden">
+          <div class="list absolute w-max h-full left-0 top-0 flex duration-500 jimage-expo transition-transform">
+              <div class="item">
+                  <img src="./img/background1.jpg" alt="" class="w-screen h-screen object-cover">
+              </div>
+              <div class="item">
+                  <img src="./img/background2.jpg" alt="" class="w-screen h-screen object-cover">
+              </div>
+              <div class="item">
+                  <img src="./img/background3.jpg" alt="" class="w-screen h-screen object-cover">
+              </div>
+          </div>
+          <div class="content-overlay absolute top-1/2 left-24 right-24 transform -translate-y-1/2 text-left text-white z-10 max-w-lg">
+            <h2 class="text-5xl mb-6 font-bold leading-tight">Find your True <span class="bg-gradient-to-r from-white to-pink-500 bg-clip-text text-transparent">love</span>❤️ in here</h2>
+            <a href="./html/setup-profile.html"><button id="SubHeroPlay" class="play-button bg-transparent border-2 hover:bg-pink-600 text-white font-bold py-3 px-12 rounded-lg transition duration-300">
+                Play it now
+            </button></a>
+        </div>
+          <div class="buttons absolute top-1/2 left-[1%] w-[90%] right[1%] flex justify-between transform -translate-y-1/2">
+              <button id="prev" class="w-[50px] h-[50px] rounded-full bg-white/30 text-white border-none font-mono font-bold">&lt;</button>
+              <button id="next" class="w-[50px] h-[50px] rounded-full bg-white/30 text-white border-none font-mono font-bold">&gt;</button>
+          </div>
+          <ul class="dots absolute bottom-[20px] left-0 w-full m-0 p-0 flex justify-center">
+              <li class="list-none w-[10px] h-[10px] bg-white mx-[10px] rounded-full transition-all duration-500 active:w-[30px]"></li>
+              <li class="list-none w-[10px] h-[10px] bg-white mx-[10px] rounded-full transition-all duration-500"></li>
+              <li class="list-none w-[10px] h-[10px] bg-white mx-[10px] rounded-full transition-all duration-500"></li>
+          </ul>
+      </div>
+  </section>
+
+    <section class="bg-black w-full">
+      <div class="slider" style="
+          --width: 100px;
+          --height: 50px;
+          --quantity: 10;
+      ">
+          <div class="list">
+              <div class="item" style="--position: 1"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 2"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 3"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 4"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 5"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 6"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 7"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 8"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 9"><img src="./img/logoSparks.svg" alt=""></div>
+              <div class="item" style="--position: 10"><img src="./img/logoSparks.svg" alt=""></div>
+          </div>
+      </div>
+
+      <div class="slider" reverse="true" style="
+          --width: 200px;
+          --height: 200px;
+          --quantity: 9;
+      ">
+          <div class="list">
+              <div class="item" style="--position: 1"><img src="./img/character1.png" alt=""></div>
+              <div class="item" style="--position: 2"><img src="./img/character2.png" alt=""></div>
+              <div class="item" style="--position: 3"><img src="./img/character3.png" alt=""></div>
+              <div class="item" style="--position: 4"><img src="./img/character4.jpg" alt=""></div>
+              <div class="item" style="--position: 5"><img src="./img/character5.jpg" alt=""></div>
+              <div class="item" style="--position: 6"><img src="./img/character6.jpg" alt=""></div>
+              <div class="item" style="--position: 7"><img src="./img/character7.jpg" alt=""></div>
+              <div class="item" style="--position: 8"><img src="./img/character8.jpg" alt=""></div>
+              <div class="item" style="--position: 9"><img src="./img/character9.jpg" alt=""></div>
+              <div class="item" style="--position: 10"><img src="./img/character1.png" alt=""></div>
+          </div>
+      </div>
+  </section>
+
+
+  <footer class="bg-dark pt-24 pb-12" id="credits">
+    <div class="container">
+      <div class="flex flex-wrap">
+        <div class="w-full px-4 mb-12 text-slate-300 font-medium md:w-1/3">
+          <h2 class="font-bold text-4xl text-white mb-5">星空</h2>
+          <h3 class="font-bold text-2xl">Sparks✨</h3>
+          <p>xingkong@gmail.com</p>
+          <p>China,Beijing,Fangshan Line,Liangxiang 32</p>
+        </div>
+
+        <div class="w-full px-4 mb-12 md:w-1/3">
+          <h3 class="font-semibold text-xl text-white mb-5">
+            Minigames
+          </h3>
+          <ul class="text-slate-300">
+            <li>
+              <a
+                href="#"
+                class="inline-block text-base hover:text-primary mb-3"
+                >Tic Tac Toe</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="inline-block text-base hover:text-primary mb-3"
+                >Memory Game</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="inline-block text-base hover:text-primary mb-3"
+                >Puzzle</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="w-full px-4 mb-12 md:w-1/3">
+          <h3 class="font-semibold text-xl text-white mb-5">Menu</h3>
+          <ul class="text-slate-300">
+            <li>
+              <a
+                href="#hero"
+                class="inline-block text-base hover:text-primary mb-3"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="inline-block text-base hover:text-primary mb-3"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#Guide"
+                class="inline-block text-base hover:text-primary mb-3"
+                >Guide</a
+              >
+            </li>
+            <li>
+              <a
+                href="#Minigames"
+                class="inline-block text-base hover:text-primary mb-3"
+                >Minigames</a
+              >
+            </li>
+            <li>
+              <a
+                href="#credits"
+                class="inline-block text-base hover:text-primary mb-3"
+                >Credits</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="w-full pt-10 border-t border-slate-700">
+        <div class="flex items-center justify-center mb-5">
+          <!-- Youtube -->
+          <a
+            href="https://youtube.com/webprogrammingunpas"
+            target="_blank"
+            class="w-9 text-white h-9 mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-slate-800"
+          >
+            <svg
+              class="fill-current"
+              role="img"
+              width="20"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>YouTube</title>
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+              />
+            </svg>
+          </a>
+
+          <!-- INstagram -->
+          <a
+            href="https://instagram.com/glbertds_"
+            target="_blank"
+            class="w-9 h-9 text-white mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-slate-800"
+          >
+            <svg
+              width="20"
+              class="fill-current"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Instagram</title>
+              <path
+                d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"
+              />
+            </svg>
+          </a>
+
+          <!-- Github -->
+          <a
+            href="https://github.com/SuryaKeyzz"
+            target="_blank"
+            class="w-9 h-9 bg-white mr-3 rounded-full flex justify-center items-center border border-slate-300 hover:border-primary hover:bg-primary hover:text-slate-800"
+          >
+            <svg
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>GitHub</title>
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+              />
+            </svg>
+          </a>
+        </div>
+        <p class="font-medium text-xs text-slate-500 text-center">
+         Made with <span class="text-pink-500">❤️</span> by
+          <a
+            href="https://instagram.com/glbertds_"
+            target="_blank"
+            class="font-bold text-primary"
+            >Xingkong</a
+          >, using
+          <a
+            href="https://tailwindcss.com"
+            target="_blank"
+            class="font-bold text-sky-500"
+            >Tailwind CSS</a
+          >.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- pop up login form -->
+  <div
+  id="loginPopup"
+  class="hidden fixed inset-0 bg-black bg-opacity-50 justify-center items-center z-20"
+>
+  <div class="bg-white p-8 rounded-lg shadow-lg relative max-w-md w-full">
+    <!-- Close Button -->
+    <button
+      id="closePopup"
+      class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h2 class="text-2xl font-bold mb-4">Login</h2>
+      <form>
+        <div class="mb-4">
+          <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition duration-300"
+        >
+          Login
+        </button>
+      </form>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Don't have an account?
+        <a
+          href="#"
+          id="switchToRegister"
+          class="font-medium text-blue-600 hover:underline"
+        >Sign Up</a>
+      </p>
+    </div>
+
+    <!-- Register Form -->
+    <div id="registerForm" class="hidden">
+      <h2 class="text-2xl font-bold mb-4">Register</h2>
+      <form>
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+        >
+          Register
+        </button>
+      </form>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Already have an account?
+        <a
+          href="#"
+          id="switchToLogin"
+          class="font-medium text-green-600 hover:underline"
+        >Login</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+    <script src="javascript/script.js"></script>
+  </body>
+</html>

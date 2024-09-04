@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Memory Game</title>
+    <link rel="stylesheet" href="../css/numbergame.css">
+</head>
+<body>
+    <h1>Memory Number Game</h1>
+    <p id="timer-display">Time Left: 30s</p>
+    <div id="number-display"></div>
+    <input type="password" id="user-input" maxlength="7" placeholder="Enter the number">
+    <div id="popup-message" style="display:none;"></div>
+    <div id="keypad">
+        <button class="key">1</button>
+        <button class="key">2</button>
+        <button class="key">3</button><br>
+        <button class="key">4</button>
+        <button class="key">5</button>
+        <button class="key">6</button><br>
+        <button class="key">7</button>
+        <button class="key">8</button>
+        <button class="key">9</button><br>
+        <button id="clear" class="control-button">Clear</button>
+        <button class="key">0</button>
+        <button id="submit" class="control-button">Submit</button><br>
+    </div>    
+    <button id="start-game">Start Game</button>
+    <script src="../javascript/numbergame.js"></script>
+</body>
+</html>

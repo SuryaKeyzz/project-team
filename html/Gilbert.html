@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <!-- Header -->
+    <header class="bg-gray-800 p-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <img src="../img/logoSparks.svg" alt="" class="w-32 h-auto">
+            <nav class="space-x-6">
+                <a href="#about" class="hover:text-indigo-500">About</a>
+                <a href="#projects" class="hover:text-indigo-500">Projects</a>
+                <a href="#skills" class="hover:text-indigo-500">Skills</a>
+                <a href="#contact" class="hover:text-indigo-500">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="flex items-center justify-center h-screen bg-cover bg-center relative" style="background-image: url('../img/Gilbert/bg-gilbert.jpg');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 text-center">
+            <img src="../img/Gilbert/gilbert.jpg" alt="Your Photo" class="w-64 h-64 rounded-full mx-auto mb-6 border-4 border-indigo-500 object-cover"> <!-- Ukuran gambar di hero diperbesar -->
+            <h2 class="text-5xl font-bold mb-4">Hello, I'm Gilbert Demetrio</h2>
+            <p class="text-lg mb-8">A passionate web developer creating modern and responsive designs</p>
+            <a href="#projects" class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-full">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">About Me</h2>
+            <p class="text-lg leading-relaxed">
+                "I'm really interested in web development, and I'm eager to learn more and improve my skills in this area."
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">My Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-4">Homepage Design</h3>
+                    <p class="leading-relaxed">
+                        make a responsive and innovative design homepage
+                    </p>
+                </div>
+                <!-- Add more projects as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-800">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Skills</h2>
+            <div class="flex flex-wrap justify-center space-x-8"> <!-- Menambahkan jarak antar SVG -->
+                <img src="../img/Gilbert/html5.svg" alt="HTML" class="w-20 h-20"> <!-- Ukuran SVG diperbesar -->
+                <img src="../img/Gilbert/css3.svg" alt="CSS" class="w-20 h-20"> <!-- Ukuran SVG diperbesar -->
+                <img src="../img/Gilbert/javascript.svg" alt="JavaScript" class="w-20 h-20"> <!-- Ukuran SVG diperbesar -->
+                <img src="../img/Gilbert/tailwindcss.svg" alt="Tailwind CSS" class="w-20 h-20"> <!-- Ukuran SVG diperbesar -->
+                <!-- Add more skill icons as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Get In Touch</h2>
+            <p class="text-lg leading-relaxed mb-8">
+                If you'd like to work together or just want to say hi, feel free to reach out to me.
+            </p>
+            <a href="https://www.instagram.com/glbertds_/" class="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-full">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-4 text-center">
+        <p>&copy; 2024 Gilbert Demetrio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

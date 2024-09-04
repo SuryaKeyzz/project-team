@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setup Profile</title>
+    <link rel="stylesheet" href="../css/setup-profile-styles.css" />
+  </head>
+  <body>
+    <div class="profile-container">
+      <h1>Setup Your Profile</h1>
+      <div class="form-content">
+        <div class="form-fields">
+          <form action="./match.html">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+
+            <div class="radio-group">
+              <label>Gender:</label>
+              <div class="radio-buttons gender-buttons">
+                <div
+                  class="radio-button"
+                  id="male"
+                  onclick="selectOption('gender', 'male')"
+                >
+                  Male
+                </div>
+                <div
+                  class="radio-button"
+                  id="female"
+                  onclick="selectOption('gender', 'female')"
+                >
+                  Female
+                </div>
+              </div>
+            </div>
+
+            <div class="radio-group">
+              <label>Interested In:</label>
+              <div class="radio-buttons interest-buttons">
+                <div
+                  class="radio-button"
+                  id="male-interest"
+                  onclick="selectOption('interest', 'male-interest')"
+                >
+                  Male
+                </div>
+                <div
+                  class="radio-button"
+                  id="female-interest"
+                  onclick="selectOption('interest', 'female-interest')"
+                >
+                  Female
+                </div>
+                <div
+                  class="radio-button"
+                  id="everyone"
+                  onclick="selectOption('interest', 'everyone')"
+                >
+                  Everyone
+                </div>
+              </div>
+            </div>
+
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio" rows="4"></textarea>
+
+            <button type="submit">Next</button>
+          </form>
+        </div>
+
+        <div class="profile-photos">
+          <div class="profile-photos-label">Profile Photos:</div>
+          <div class="profile-pic-slots">
+            <div
+              class="pic-slot"
+              onclick="document.getElementById('file-input-1').click()"
+            >
+              <input
+                type="file"
+                id="file-input-1"
+                accept="image/*"
+                onchange="previewImage(event, 'img-1')"
+              />
+              <img id="img-1" src="" alt="Profile Picture Preview" />
+              <span class="add-photo">+</span>
+            </div>
+            <div
+              class="pic-slot"
+              onclick="document.getElementById('file-input-2').click()"
+            >
+              <input
+                type="file"
+                id="file-input-2"
+                accept="image/*"
+                onchange="previewImage(event, 'img-2')"
+              />
+              <img id="img-2" src="" alt="Profile Picture Preview" />
+              <span class="add-photo">+</span>
+            </div>
+            <div
+              class="pic-slot"
+              onclick="document.getElementById('file-input-3').click()"
+            >
+              <input
+                type="file"
+                id="file-input-3"
+                accept="image/*"
+                onchange="previewImage(event, 'img-3')"
+              />
+              <img id="img-3" src="" alt="Profile Picture Preview" />
+              <span class="add-photo">+</span>
+            </div>
+            <div
+              class="pic-slot"
+              onclick="document.getElementById('file-input-4').click()"
+            >
+              <input
+                type="file"
+                id="file-input-4"
+                accept="image/*"
+                onchange="previewImage(event, 'img-4')"
+              />
+              <img id="img-4" src="" alt="Profile Picture Preview" />
+              <span class="add-photo">+</span>
+            </div>
+            <div
+              class="pic-slot"
+              onclick="document.getElementById('file-input-5').click()"
+            >
+              <input
+                type="file"
+                id="file-input-5"
+                accept="image/*"
+                onchange="previewImage(event, 'img-5')"
+              />
+              <img id="img-5" src="" alt="Profile Picture Preview" />
+              <span class="add-photo">+</span>
+            </div>
+            <div
+              class="pic-slot"
+              onclick="document.getElementById('file-input-6').click()"
+            >
+              <input
+                type="file"
+                id="file-input-6"
+                accept="image/*"
+                onchange="previewImage(event, 'img-6')"
+              />
+              <img id="img-6" src="" alt="Profile Picture Preview" />
+              <span class="add-photo">+</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function previewImage(event, imgId) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById(imgId).src = e.target.result;
+          document.getElementById(imgId).style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function selectOption(group, id) {
+        // Deselect all options in the group
+        document
+          .querySelectorAll(`.${group}-buttons .radio-button`)
+          .forEach((button) => {
+            button.classList.remove("selected");
+          });
+        // Select the clicked option
+        document.getElementById(id).classList.add('selected');};
+    </script>
+  </body>
+</html>

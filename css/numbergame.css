@@ -1,0 +1,87 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+#popup-message {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0.9;
+    font-size: 18px;
+}
+
+#number-display {
+    font-size: 2em;
+    margin: 20px auto;
+    width: 180px;
+    background-color: #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#user-input {
+    font-size: 1.5em;
+    text-align: center;
+    margin: 20px;
+    width: 140px;
+}
+
+#keypad {
+    text-align: center;
+}
+
+.key {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.control-button {
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submit {
+    background-color: #4CAF50; /* Green color for submit button */
+    color: white;
+    border: none;
+}
+
+#clear {
+    background-color: #f44336; /* Red color for clear button */
+    color: white;
+    border: none;
+}
+
+#keypad button {
+    font-size: 1.5em;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#start-game {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+

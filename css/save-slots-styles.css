@@ -1,0 +1,138 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #6a82fb, #fc5c7d); /* Updated gradient background */
+    color: #fff; /* Text color */
+}
+
+/* Container for save slots */
+.container {
+    background: rgba(30, 30, 30, 0.9); /* Darker but slightly transparent background */
+    padding: 30px;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    width: 90%;
+    max-width: 800px; /* Adjusted max-width */
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    font-size: 36px; /* Adjusted heading size */
+    margin-bottom: 30px;
+    color: #fff;
+    text-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Save slots container */
+.save-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px; /* Space between slots */
+}
+
+/* Individual save slot */
+.slot {
+    background: rgba(50, 50, 50, 0.8); /* Darker background for slots */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 200px; /* Adjusted width of each slot */
+    height: 250px; /* Adjusted height of each slot */
+}
+
+.slot-image {
+    width: 100px;
+    height: 100px;
+    background: rgba(100, 100, 100, 0.5); /* Darker but complementary background for image area */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.slot-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Hide until a file is selected */
+}
+
+.add-photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px; /* Adjusted + sign size */
+    color: #fff; /* Contrast color for the + sign */
+}
+
+/* Slot details */
+.slot-details {
+    flex: 1;
+    text-align: center;
+}
+
+.username {
+    font-size: 18px;
+    margin: 0;
+    color: #fff; /* Light color for username */
+}
+
+.date {
+    font-size: 16px;
+    margin: 5px 0 0;
+    color: #ddd; /* Slightly lighter for date */
+}
+
+/* File input */
+.file-input {
+    display: none;
+}
+
+/* Button group */
+.button-group {
+    margin-top: 30px; /* Adjusted margin */
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+}
+
+/* Button styles */
+button {
+    padding: 12px 24px; /* Adjusted padding */
+    border-radius: 20px; /* Rounded corners */
+    border: none;
+    color: #fff;
+    font-size: 16px; /* Adjusted font size */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+#back-button {
+    background: #6a82fb; /* Updated color for Back button */
+}
+
+#back-button:hover {
+    background: #5a73d1; /* Darker shade on hover */
+}
+
+#done-button {
+    background: #4caf50; /* Done button color */
+}
+
+#done-button:hover {
+    background: #45a049; /* Darker shade on hover */
+}

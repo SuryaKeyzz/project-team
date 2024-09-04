@@ -1,0 +1,198 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3); /* Romantic gradient background */
+    color: #fff; /* Text color */
+}
+
+/* Profile setup container */
+.profile-container {
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent background to blend with theme */
+    padding: 30px;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    width: 90%;
+    max-width: 1000px; /* Adjusted max-width */
+}
+
+/* Heading */
+h1 {
+    font-size: 32px; /* Adjusted heading size */
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Flex container for form content */
+.form-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* Adjusted gap */
+}
+
+/* Form fields section */
+.form-fields {
+    flex: 2;
+}
+
+/* Profile photos section */
+.profile-photos {
+    flex: 1;
+}
+
+/* Horizontal alignment for label and options */
+.radio-group {
+    margin-top: 20px; /* Adjusted top margin */
+}
+
+.radio-group label {
+    font-size: 18px; /* Adjusted font size */
+    color: #fff;
+    margin-bottom: 10px; /* Adjusted bottom margin */
+    display: block;
+}
+
+.radio-buttons {
+    display: flex;
+    gap: 10px; /* Adjusted space between buttons */
+}
+
+/* Button group for gender and interested in options */
+.radio-button {
+    padding: 8px 16px; /* Adjusted padding */
+    border-radius: 20px; /* Rounded corners */
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 14px; /* Adjusted font size */
+}
+
+.radio-button.selected {
+    background: #ff7eb3; /* Highlight color for selected option */
+    border-color: #ff7eb3;
+}
+
+.radio-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.03); /* Slightly increased scale */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Form labels */
+label {
+    font-size: 18px; /* Adjusted font size */
+    display: block;
+    margin-top: 20px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Form inputs, select dropdowns, and textarea */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
+    color: #fff;
+    font-size: 14px; /* Adjusted font size */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Adjust for textarea */
+textarea {
+    resize: vertical;
+}
+
+/* File upload button */
+input[type="file"] {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* Profile picture slots */
+.profile-pic-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Adjusted space between slots */
+    justify-content: center;
+}
+
+.pic-slot {
+    width: 100px; /* Adjusted width */
+    height: 100px; /* Adjusted height */
+    background: rgba(255, 255, 255, 0.2); /* Transparent background */
+    border-radius: 8px; /* Rounded corners */
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.pic-slot:hover {
+    background: rgba(255, 255, 255, 0.3); /* Slight background change on hover */
+    transform: scale(1.02); /* Slight zoom effect */
+}
+
+.pic-slot input[type="file"] {
+    display: none;
+}
+
+.pic-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none; /* Hide until a file is selected */
+}
+
+.add-photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px; /* Adjusted + sign size */
+    color: #fff;
+}
+
+/* Profile photos label */
+.profile-photos-label {
+    font-size: 18px; /* Adjusted font size */
+    margin-bottom: 15px; /* Adjusted margin */
+    text-align: center;
+    color: #fff;
+}
+
+/* Submit button */
+button[type="submit"] {
+    padding: 10px 20px; /* Adjusted padding */
+    border-radius: 20px; /* Rounded corners */
+    border: none;
+    background: #ff7eb3; /* Button color */
+    color: #fff;
+    font-size: 16px; /* Adjusted font size */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px; /* Adjusted margin */
+    display: block;
+    width: 100%;
+    max-width: 180px; /* Adjusted max-width */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+button[type="submit"]:hover {
+    background: #ff758c; /* Darker shade on hover */
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}

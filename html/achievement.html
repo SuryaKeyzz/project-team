@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Achievement System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .achievement {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .achievement:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement h3 {
+            color: #3498db;
+            margin-top: 0;
+        }
+
+        .achievement p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        #achievementPopup {
+            position: fixed;
+            top: -100px;
+            right: 20px;
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 10px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: top 0.5s ease;
+            z-index: 1000;
+        }
+
+        #achievementPopup.show {
+            top: 20px;
+        }
+
+        #achievementPopup::before {
+            content: '🏆';
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        #achievementName {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Achievement</h1>
+        <div id="achievements-container" class="achievements-grid">
+            <!-- Achievements will be dynamically added here -->
+        </div>
+    </div>
+
+    <div id="achievementPopup">
+        <p>Achievement Unlocked: <span id="achievementName"></span></p>
+    </div>
+
+    <script>
+        const achievementsContainer = document.getElementById('achievements-container');
+        const achievementPopup = document.getElementById('achievementPopup');
+        const achievementName = document.getElementById('achievementName');
+
+        const achievements = [
+            { id: 1, name: "First Match", description: "Welcome to the adventure!" },
+            { id: 2, name: "Profile Maestro", description: "Craft your digital identity" },
+            { id: 3, name: "Social Butterfly", description: "Spread your wings, make 5 friends" },
+            { id: 4, name: "Content Creator", description: "Share your first post" },
+            { id: 5, name: "Explorer", description: "Visit 10 different pages" },
+            { id: 6, name: "Night Owl", description: "Log in after midnight" }
+        ];
+
+        function createAchievementElement(achievement) {
+            const achievementElement = document.createElement('div');
+            achievementElement.className = 'achievement';
+            achievementElement.innerHTML = `
+                <h3>${achievement.name}</h3>
+                <p>${achievement.description}</p>
+            `;
+            return achievementElement;
+        }
+
+        achievements.forEach(achievement => {
+            const achievementElement = createAchievementElement(achievement);
+            achievementsContainer.appendChild(achievementElement);
+        });
+
+        function showAchievement(achievementId) {
+            const achievement = achievements.find(a => a.id === achievementId);
+            if (achievement) {
+                achievementName.textContent = achievement.name;
+                achievementPopup.classList.add('show');
+                setTimeout(() => {
+                    achievementPopup.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Example usage: Unlock achievements at intervals
+        //let currentAchievement = 1;
+        //function unlockNextAchievement() {
+           // if (currentAchievement <= achievements.length) {
+               // showAchievement(currentAchievement);
+                //currentAchievement++;
+                //setTimeout(unlockNextAchievement, 5000); // Unlock next achievement after 5 seconds
+            //}
+       // }
+
+        // Start unlocking achievements (for demonstration purposes)
+        unlockNextAchievement();
+    </script>
+</body>
+</html>

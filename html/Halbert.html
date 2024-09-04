@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Portfolio</title>
+    <style>
+      body {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        background-color: #1e1e1e;
+        color: #ddd;
+      }
+      .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+      }
+      header {
+        background: #333;
+        color: #fff;
+        padding-top: 30px;
+        min-height: 70px;
+        border-bottom: #77ab59 3px solid;
+      }
+      header h1 {
+        text-align: center;
+        margin: 0;
+        font-size: 24px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      section {
+        padding: 20px 0;
+      }
+      .about-me,
+      .skills,
+      .contact {
+        background: #2a2a2a;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      h2 {
+        text-align: center;
+        color: #77ab59;
+      }
+      .about-me {
+        text-align: center;
+      }
+      .about-me img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 3px solid #77ab59;
+      }
+      .skills ul {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+      }
+      .skills ul li {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px;
+        background: #444;
+        color: #ddd;
+        border-radius: 4px;
+      }
+      .contact p {
+        text-align: center;
+        margin: 10px 0;
+      }
+      .contact a {
+        color: #77ab59;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .profile-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .button-container {
+        margin-top: 20px; /* Adjust as needed */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .profile-button {
+        background-color: #4caf50; /* Green background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 10px 20px; /* Some padding */
+        text-align: center; /* Center the text */
+        text-decoration: none; /* Remove underline */
+        font-size: 16px; /* Set a font size */
+        cursor: pointer; /* Pointer cursor on hover */
+        border-radius: 5px; /* Rounded corners */
+      }
+
+      .profile-button:hover {
+        background-color: #45a049; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Halbert Christian</h1>
+      </div>
+    </header>
+
+    <div class="container">
+      <section class="about-me">
+        <h2>About Me</h2>
+        <img src="../img/Halbert/halbert2.jpg" alt="Profile Photo" />
+        <p>
+          I'm a computer science student, who are interested in developing new
+          applications and creating websites. I also like socializing with new
+          people.
+        </p>
+      </section>
+
+      <section class="skills">
+        <h2>Skills</h2>
+        <ul>
+          <li>HTML</li>
+          <li>C</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+        </ul>
+      </section>
+
+      <section class="contact">
+        <h2>Contact Information</h2>
+        <p>
+          Email:
+          <a href="christian.hlbrt@gmail.com">christian.hlbrt@gmail.com</a>
+        </p>
+
+        <!-- New Button -->
+        <div class="button-container">
+          <a href="../index.html">
+            <button id="learn-more-button" class="profile-button">
+              Back to Homepage
+            </button>
+          </a>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
