@@ -65,7 +65,7 @@ window.addEventListener(
   { passive: false }
 );
 
-const text1 = "Do you hear her screams";
+const text1 = "Do you hear The screams";
 const text2 = "Don't you?";
 
 let index1 = 0;
