@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const startDay5Button = document.getElementById("startDay5Button");
   const saveProgressButton = document.getElementById("saveProgressButton");
   const loadButton = document.getElementById("loadButton");
-
+  const matchedName = localStorage.getItem("lastMatchedName");
+  const userName = localStorage.getItem("UserName");
 
   //  voice dialogue
   let yomp =
@@ -41,55 +42,105 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       alexIntroduction: [
         {
-          text: "HAHAHAH you’re funny. I’m Alex btw",
+          text: `HAHAHAH you’re funny. I’m ${matchedName} btw`,
           options: [
             { text: "I know. It’s on your profile", next: "alexComment" },
-            { text: "Heyy Alex, I’m [name]", next: "alexComment" },
+            { text: `Heyy ${matchedName}, I’m ${userName}`, next: "alexComment1" },
             {
-              text: "Alex… that suits you. A handsome name for a handsome man.",
-              next: "alexComment",
+              text: `${matchedName}… that suits you. A beautiful name for a beautiful person.`,
+              next: "alexComment2",
             },
           ],
         },
       ],
       alexComment: [
         {
-          text: "Ooops, you’re right HAHA. [name] huh, even that sounds cute.",
+          text: `Ooops, you’re right HAHA.`,
           options: [
-            { text: "<33", next: "interests" },
-            { text: "HAHA", next: "interests" },
-            {
-              text: "Gee you sure know how to rizz up a guy huh?",
-              next: "interests",
-            },
+            { text: "HAHA. Thanks for matching me, by the way", next: "interests" },
           ],
         },
+      ],
+      alexComment1:[
+        {
+          text: `${userName} huh, even that sounds cute.`,
+          options: [
+            { text: "HAHA. Thanks for matching me, by the way", next: "interests" },
+          ],
+        }
+        
+      ],
+      alexComment2:[
+        {
+          text: `Stop it. I'm blushing :)`,
+          options: [
+            {text:  "HAHA. Thanks for matching me, by the way", next: "interests"}
+          ]
+        }
       ],
       interests: [
         {
-          text: "So, tell me, [name], what’s your interest recently?",
+          text: `It was my pleasure. So, tell me, ${userName}, what’s your interest recently?`,
           options: [
             {
               text: "I’ve been reading this book for a while now. It’s called The Fourth Wing. It’s a dystopian fantasy, so check it out if that’s your jam.",
-              next: "work",
+              next: "Hobbies1",
             },
             {
               text: "Hiking. I lovee hiking the hills close to my house. Sure don’t love having to wake up so early though",
-              next: "work",
+              next: "Hobbies2",
             },
             {
               text: "I haven’t had much time to do much other than work honestly… Gosh I wish I have more free time. All this work work work is killing me",
-              next: "work",
+              next: "Hobbies3",
             },
           ],
         },
       ],
+      Hobbies1:[
+        {
+          text: "Wow, fantasy stories. That's not really my cup of tea, but the title sounds interesting. Maybe I'll pick it up sometime soon.",
+          options:[{
+          text: "But who has time for hobbies anyway, we're all too busy working", next: "work"
+          }
+          ]
+        }
+      ],
+      Hobbies2:[
+        {
+          text: "I see, I’m more of an indoor typa guy though. So I wouldn’t know how that feels like.",
+          options:[{
+          text: "But who has time for hobbies anyway, we're all too busy working", next: "work"
+          }
+          ]
+        }
+      ],
+      Hobbies3:[
+        {
+          text: "That's harsh… You should take some time off if your work is burning you out",
+          options:[{
+          text: "Nah… I’ll quit working when I’m dead", next: "work"
+          }
+          ]
+        }
+      ],
       work: [
         {
-          text: "What do you do anyways? For work I mean.",
+          text: "HAHA, you're not wrong. What do you do anyway? For work I mean.",
           options: [
             {
               text: "I work at the vet shop in my neighborhood. Do you know PetsRUs? There’s only one in New Yolk. Not a doctor though, I work the register upfront. So don’t come to me if your dog gets sick",
+              next: "dog",
+            },
+          ],
+        },
+      ],
+      dog: [
+        {
+          text: "HAHAH you’re lucky I don’t have a pet for now.",
+          options: [
+            {
+              text: `How about you, ${matchedName}? What do you do to make your money?`,
               next: "alexWork",
             },
           ],
@@ -101,15 +152,48 @@ document.addEventListener("DOMContentLoaded", () => {
           options: [
             {
               text: "You’re one hard-working man… Kinda my type to be honest",
-              next: "music",
+              next: "answer1",
             },
             {
               text: "A barista? That’s sweet. How about you become my personal coffee maker? I couldn’t live a day without having at least a cup",
-              next: "music",
+              next: "answer2",
             },
             {
               text: "You’re working so hard! Are you saving up for something?",
+              next: "answer3",
+            },
+          ],
+        },
+      ],
+      answer1: [
+        {
+          text: "Then we’re in luck cause you’re 100% my type too",
+          options: [
+            {
+              text: "<33",
               next: "music",
+            },
+          ],
+        },
+      ],
+      answer2: [
+        {
+          text: "Wow, its like you’re another version of me.",
+          options: [
+            {
+              text: "HAHA",
+              next: "music",
+            },
+          ],
+        },
+      ],
+      answer3: [
+        {
+          text: "Not really, I just got used to working myself to death ever since I lost both my parents.",
+          options: [
+            {
+              text: "Oh my gosh, that’s horrible… Are you fine now?",
+              next: "music1",
             },
           ],
         },
@@ -117,6 +201,25 @@ document.addEventListener("DOMContentLoaded", () => {
       music: [
         {
           text: "BTW, do you listen to music often?",
+          options: [
+            {
+              text: "Yeah! Do you know Fiona Apple? Her songs are amazing…. Lowkey underrated tho",
+              next: "musicReply1",
+            },
+            {
+              text: "I like some of those Nirvana songs… ‘Come as You Are’ is my favourite",
+              next: "musicReply2",
+            },
+            {
+              text: "Not really… I sometimes just turn on the radio and listen to that I guess, but I don’t have any preferences",
+              next: "musicReply3",
+            },
+          ],
+        },
+      ],
+      music1: [
+        {
+          text: "Yeah, it was years ago anyway. I’m all good now. But I had to learn to take care of myself early on so that’s why sometimes I don’t even notice when I’m working too hard. BTW, do you listen to music often?",
           options: [
             {
               text: "Yeah! Do you know Fiona Apple? Her songs are amazing…. Lowkey underrated tho",
@@ -141,14 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
               text: "Listen to it now! You have to!! I promise you won’t regret it",
               next: "end",
             },
-            {
-              text: "I love you. Wait, is that too early? HAHA Anyway… we’re definitely soulmates!",
-              next: "end",
-            },
-            {
-              text: "Yeah well… You win some, you lose some, I guess. Believe me, I’ve tried every genre and none of them did anything for me. I guess I’ll just be the cruel heartless harpy who hates music",
-              next: "end",
-            },
           ],
         },
       ],
@@ -157,15 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text: "What really? Nirvana’s raddd. That’s my favorite too, along with ‘Smells Like Teen Spirit’ and ‘Something in The Way’.",
           options: [
             {
-              text: "Listen to it now! You have to!! I promise you won’t regret it",
-              next: "end",
-            },
-            {
               text: "I love you. Wait, is that too early? HAHA Anyway… we’re definitely soulmates!",
-              next: "end",
-            },
-            {
-              text: "Yeah well… You win some, you lose some, I guess. Believe me, I’ve tried every genre and none of them did anything for me. I guess I’ll just be the cruel heartless harpy who hates music",
               next: "end",
             },
           ],
@@ -175,14 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           text: "You’re totally missing out. There is sooooo much good music nowadays I can’t even keep up.",
           options: [
-            {
-              text: "Listen to it now! You have to!! I promise you won’t regret it",
-              next: "end",
-            },
-            {
-              text: "I love you. Wait, is that too early? HAHA Anyway… we’re definitely soulmates!",
-              next: "end",
-            },
             {
               text: "Yeah well… You win some, you lose some, I guess. Believe me, I’ve tried every genre and none of them did anything for me. I guess I’ll just be the cruel heartless harpy who hates music",
               next: "end",
@@ -201,13 +280,65 @@ document.addEventListener("DOMContentLoaded", () => {
           text: "Then let's keep in touch, yeah? It's getting late now, how about we continue tomorrow?",
           options: [
             { text: "I would like that", next: null },
-            { text: "Sure thing, Alex", next: null },
+            { text: `Sure thing, ${matchedName}`, next: null },
             { text: "Okay cutie", next: null },
           ],
         },
       ],
     },
     day2: {
+      day2start:[
+        {
+          text: "Hello.",
+          options: [
+            {
+              text: "You up?",
+              next: "early",
+            },
+            {
+              text: "Morninggg cutie",
+              next: "early",
+            },
+            {
+              text: "Hey, are you busy?",
+              next: "early",
+            },
+          ],
+        },
+      ],
+      early: [
+        {
+          text: `You're up so early. Are you working today?`,
+          options: [
+            {
+              text: "Yeah… sadly. But I woke up earlier to run a few miles before work. I’ve been trying to get in better shape. You know, people have said it a lot and I didn’t use to believe them but exercising in the morning will really make you more awake during the day",
+              next: "run",
+            },
+          ],
+        },
+      ],
+      run: [
+        {
+          text: `Wow… Maybe I should start running too. I used to play basketball but my friends all moved away so I don’t have anyone to play with. Running sounds kinda fun.`,
+          options: [
+            {
+              text: "It is fun. Alright BRB, text you when I get back from work. I have to go now",
+              next: "gowork",
+            },
+          ],
+        },
+      ],
+      gowork: [
+        {
+          text: `Good luck at work.`,
+          options: [
+            {
+              text: "*Go to work*",
+              next: "start",
+            },
+          ],
+        },
+      ],
       start: [
         {
           text: "You back yet?",
@@ -1092,7 +1223,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // phone call
   function triggercall() {
-    const matchedName = localStorage.getItem("lastMatchedName");
     const matchedImage = localStorage.getItem("lastMatchedImage");
     const audioElement = document.getElementById("audio-element");
     const microphoneBtn = document.getElementById("microphone-btn");
@@ -1350,7 +1480,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function startDay2() {
     console.log("Starting Day 2");
     currentDay = "day2";
-    currentStage = "start";
+    currentStage = "day2start";
     const newDayStage = dialogues[currentDay][currentStage][0];
     displayMessage("--- Next Day ---", [], false);
     displayMessage(newDayStage.text, newDayStage.options, false);
@@ -1386,23 +1516,50 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startDay5() {
-    console.log("Starting Day 5");
-    currentDay = "day5";
-    currentStage = "start";
-    const newDayStage = dialogues[currentDay][currentStage][0];
-    responseOptions.style.display = "block";
-
-    displayMessage("--- Next Day ---", [], false);
-    displayMessage(newDayStage.text, newDayStage.options, false);
-    startDay5Button.style.display = "none";
+    const puzzle = localStorage.getItem("puzzleDone");
+    if(puzzle){
+      console.log("Starting Day 5");
+      currentDay = "day5";
+      currentStage = "start";
+      const newDayStage = dialogues[currentDay][currentStage][0];
+      responseOptions.style.display = "block";
+    
+      displayMessage("--- Next Day ---", [], false);
+      displayMessage(newDayStage.text, newDayStage.options, false);
+      startDay5Button.style.display = "none";
+    
+    }
+   else{
+    // Show prompt to click profile picture before day 5 starts
+    promptProfileClick();
+   }
+    
   }
 
   // Add this to your existing event listeners
+// profile picture directed to puzzle
+// Function to prompt the user to click the profile image
+function promptProfileClick() {
+  const blurBackground = document.getElementById('blurBackground');
+  const chatContactImage = document.getElementById('chatContactImage');
 
-  // Add this to your existing event listeners
-  loadButton.addEventListener("click", () => {
-    window.location.href = "save-slots.html";
+  // Display the blur background
+  blurBackground.style.display = 'block';
+  chatContactImage.style.zIndex = '12'; // Bring the image in front
+
+  // Add a click event listener to the profile image
+  chatContactImage.addEventListener('click', function() {
+    // Remove blur and glitch after click
+    blurBackground.style.display = 'none';
+    chatContactImage.classList.remove('glitch');
+    chatContactImage.classList.remove('enlarge-shrink-aura');
   });
+
+  // Add glitch effect to the image
+  chatContactImage.classList.add('glitch');
+  chatContactImage.classList.add('enlarge-shrink-aura');
+}
+
 
   function saveProgress() {
     const progressData = {

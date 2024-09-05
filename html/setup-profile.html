@@ -13,7 +13,7 @@
         <div class="form-fields">
           <form action="./match.html">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required />
+            <input type="text" id="username" name="username" placeholder="username" required />
 
             <div class="radio-group">
               <label>Gender:</label>
@@ -65,7 +65,7 @@
             <label for="bio">Bio:</label>
             <textarea id="bio" name="bio" rows="4"></textarea>
 
-            <button type="submit">Next</button>
+            <button type="submit" id="submitbutton">Next</button>
           </form>
         </div>
 
@@ -165,7 +165,7 @@
         };
         reader.readAsDataURL(file);
       }
-
+    
       function selectOption(group, id) {
         // Deselect all options in the group
         document
@@ -174,7 +174,20 @@
             button.classList.remove("selected");
           });
         // Select the clicked option
-        document.getElementById(id).classList.add('selected');};
+        document.getElementById(id).classList.add('selected');
+      }
+    
+        // Adding event listener to the button
+        document.getElementById('submitbutton').addEventListener('click', function() {
+          // Get the value of the username input field
+          const username = document.getElementById('username').value;
+
+          // Save the value in localStorage
+          localStorage.setItem('UserName', username);
+
+          // Optional: Confirmation message
+          alert('Username saved: ' + username);
+      });
     </script>
   </body>
 </html>

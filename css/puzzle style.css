@@ -1,59 +1,137 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+}
+
+#puzzle-frame {
+  width: 600px;
+  height: 600px;
+  border: 5px solid #ff69b4;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.puzzle-piece,
+.dropzone {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid #f33b9a;
+}
+.puzzle-piece {
+  position: relative;
+  background-image: url("../img/puzzle.jpg");
+  background-size: 600px 600px;
+  transition: transform 0.3s ease;
+}
+
+.puzzle-piece:hover {
+  transform: scale(1.1);
+}
+
+#pieces {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hide {
+  display: none;
+}
+
+#complete-image {
+  display: none; /* Initially hidden */
+  width: 600px;
+  height: 600px;
+  margin: 20px auto;
+  background-image: url("../img/puzzle.jpg"); /* Full image */
+  background-size: 600px 600px;
 }
 
 .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Darken the background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 400px;
-    width: 80%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: popupAnimation 0.3s ease-in-out; /* Add a fade-in effect */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: popupAnimation 0.3s ease-in-out;
 }
 
 @keyframes popupAnimation {
-    from {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 #instructions-popup {
-    display: none; /* Initially hide the instructions popup */
+  display: none; /* Initially hide the instructions popup */
 }
 
 button#start-instructions {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button#start-instructions:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
+.custom-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect */
+.custom-button:hover {
+  background-color: #ff85c2; /* Slightly lighter pink on hover */
+  transform: scale(1.05);
+}
+
+/* Active button effect */
+.custom-button:active {
+  background-color: #ff4da6; /* Darker pink when active */
+  transform: scale(0.98);
+}

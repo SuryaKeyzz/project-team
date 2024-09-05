@@ -178,7 +178,7 @@ if (loginForm) {
       localStorage.setItem("loggedInUser", email);
 
       // Store profile picture URL and username in localStorage
-      const profilePictureUrl = "./img/character2.png"; // Example URL
+      const profilePictureUrl = "./img/profilepicture.jpg"; // Example URL
       localStorage.setItem("profilePicture", profilePictureUrl);
       localStorage.setItem("username", storedUser.username);
 

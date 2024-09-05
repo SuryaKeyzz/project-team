@@ -1,189 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sparks</title>
-    <link rel="stylesheet" href="../css/puzzle style.css">
-    <style>
-        #puzzle-frame {
-            width: 600px;
-            height: 600px;
-            border: 2px solid #000;
-            position: relative;
-            margin: 20px auto;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .puzzle-piece, .dropzone {
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-            box-sizing: border-box;
-            border: 1px solid #aaa;
-        }
-        .puzzle-piece {
-            position: relative;
-            background-image: url('../img/puzzle.png');
-            background-size: 600px 600px;
-        }
-        #pieces {
-            margin-top: 20px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="../css/puzzle style.css" />
+  </head>
+  <body>
+    <audio id="background-music" loop>
+      <source src="../audio/puzzle music.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
+    </audio>
 
-<audio id="background-music" loop>
-    <source src="puzzle music.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-</audio>
-    
-
-<div id="instructions-popup" class="popup-overlay">
-    <div class="popup-content">
+    <div id="instructions-popup" class="popup-overlay">
+      <div class="popup-content">
         <h2>Game Instructions</h2>
-        <p>You're curious huh? Are you suspicious of your match? Well, let's play and find out your truth.</p>
+        <p>
+          You're curious huh? Are you suspicious of your match? Well, let's play
+          and find out your truth.
+        </p>
         <button id="start-instructions">Start Game</button>
+      </div>
     </div>
-</div>
 
-<div id="puzzle-frame">
-    <!-- Dropzones (6x6 grid) -->
-    <div id="dropzone1" class="dropzone"></div>
-    <div id="dropzone2" class="dropzone"></div>
-    <div id="dropzone3" class="dropzone"></div>
-    <div id="dropzone4" class="dropzone"></div>
-    <div id="dropzone5" class="dropzone"></div>
-    <div id="dropzone6" class="dropzone"></div>
-    <div id="dropzone7" class="dropzone"></div>
-    <div id="dropzone8" class="dropzone"></div>
-    <div id="dropzone9" class="dropzone"></div>
-    <div id="dropzone10" class="dropzone"></div>
-    <div id="dropzone11" class="dropzone"></div>
-    <div id="dropzone12" class="dropzone"></div>
-    <div id="dropzone13" class="dropzone"></div>
-    <div id="dropzone14" class="dropzone"></div>
-    <div id="dropzone15" class="dropzone"></div>
-    <div id="dropzone16" class="dropzone"></div>
-    <div id="dropzone17" class="dropzone"></div>
-    <div id="dropzone18" class="dropzone"></div>
-    <div id="dropzone19" class="dropzone"></div>
-    <div id="dropzone20" class="dropzone"></div>
-    <div id="dropzone21" class="dropzone"></div>
-    <div id="dropzone22" class="dropzone"></div>
-    <div id="dropzone23" class="dropzone"></div>
-    <div id="dropzone24" class="dropzone"></div>
-    <div id="dropzone25" class="dropzone"></div>
-    <div id="dropzone26" class="dropzone"></div>
-    <div id="dropzone27" class="dropzone"></div>
-    <div id="dropzone28" class="dropzone"></div>
-    <div id="dropzone29" class="dropzone"></div>
-    <div id="dropzone30" class="dropzone"></div>
-    <div id="dropzone31" class="dropzone"></div>
-    <div id="dropzone32" class="dropzone"></div>
-    <div id="dropzone33" class="dropzone"></div>
-    <div id="dropzone34" class="dropzone"></div>
-    <div id="dropzone35" class="dropzone"></div>
-    <div id="dropzone36" class="dropzone"></div>
-</div>
+    <div id="puzzle-frame">
+      <!-- Dropzones (6x6 grid) -->
+      <div id="dropzone1" class="dropzone" data-piece="piece1"></div>
+      <div id="dropzone2" class="dropzone" data-piece="piece2"></div>
+      <div id="dropzone3" class="dropzone" data-piece="piece3"></div>
+      <div id="dropzone4" class="dropzone" data-piece="piece4"></div>
+      <div id="dropzone5" class="dropzone" data-piece="piece5"></div>
+      <div id="dropzone6" class="dropzone" data-piece="piece6"></div>
+      <div id="dropzone7" class="dropzone" data-piece="piece7"></div>
+      <div id="dropzone8" class="dropzone" data-piece="piece8"></div>
+      <div id="dropzone9" class="dropzone" data-piece="piece9"></div>
+      <div id="dropzone10" class="dropzone" data-piece="piece10"></div>
+      <div id="dropzone11" class="dropzone" data-piece="piece11"></div>
+      <div id="dropzone12" class="dropzone" data-piece="piece12"></div>
+      <div id="dropzone13" class="dropzone" data-piece="piece13"></div>
+      <div id="dropzone14" class="dropzone" data-piece="piece14"></div>
+      <div id="dropzone15" class="dropzone" data-piece="piece15"></div>
+      <div id="dropzone16" class="dropzone" data-piece="piece16"></div>
+      <div id="dropzone17" class="dropzone" data-piece="piece17"></div>
+      <div id="dropzone18" class="dropzone" data-piece="piece18"></div>
+      <div id="dropzone19" class="dropzone" data-piece="piece19"></div>
+      <div id="dropzone20" class="dropzone" data-piece="piece20"></div>
+      <div id="dropzone21" class="dropzone" data-piece="piece21"></div>
+      <div id="dropzone22" class="dropzone" data-piece="piece22"></div>
+      <div id="dropzone23" class="dropzone" data-piece="piece23"></div>
+      <div id="dropzone24" class="dropzone" data-piece="piece24"></div>
+      <div id="dropzone25" class="dropzone" data-piece="piece25"></div>
+      <div id="dropzone26" class="dropzone" data-piece="piece26"></div>
+      <div id="dropzone27" class="dropzone" data-piece="piece27"></div>
+      <div id="dropzone28" class="dropzone" data-piece="piece28"></div>
+      <div id="dropzone29" class="dropzone" data-piece="piece29"></div>
+      <div id="dropzone30" class="dropzone" data-piece="piece30"></div>
+      <div id="dropzone31" class="dropzone" data-piece="piece31"></div>
+      <div id="dropzone32" class="dropzone" data-piece="piece32"></div>
+      <div id="dropzone33" class="dropzone" data-piece="piece33"></div>
+      <div id="dropzone34" class="dropzone" data-piece="piece34"></div>
+      <div id="dropzone35" class="dropzone" data-piece="piece35"></div>
+      <div id="dropzone36" class="dropzone" data-piece="piece36"></div>
+    </div>
 
-<div id="pieces">
-    <!-- Puzzle Pieces (6x6 grid, shuffled) -->
-    <div id="piece1" class="puzzle-piece" draggable="true" style="background-position: 0 0;"></div>
-    <div id="piece2" class="puzzle-piece" draggable="true" style="background-position: -100px 0;"></div>
-    <div id="piece3" class="puzzle-piece" draggable="true" style="background-position: -200px 0;"></div>
-    <div id="piece4" class="puzzle-piece" draggable="true" style="background-position: -300px 0;"></div>
-    <div id="piece5" class="puzzle-piece" draggable="true" style="background-position: -400px 0;"></div>
-    <div id="piece6" class="puzzle-piece" draggable="true" style="background-position: -500px 0;"></div>
-    <div id="piece7" class="puzzle-piece" draggable="true" style="background-position: 0 -100px;"></div>
-    <div id="piece8" class="puzzle-piece" draggable="true" style="background-position: -100px -100px;"></div>
-    <div id="piece9" class="puzzle-piece" draggable="true" style="background-position: -200px -100px;"></div>
-    <div id="piece10" class="puzzle-piece" draggable="true" style="background-position: -300px -100px;"></div>
-    <div id="piece11" class="puzzle-piece" draggable="true" style="background-position: -400px -100px;"></div>
-    <div id="piece12" class="puzzle-piece" draggable="true" style="background-position: -500px -100px;"></div>
-    <div id="piece13" class="puzzle-piece" draggable="true" style="background-position: 0 -200px;"></div>
-    <div id="piece14" class="puzzle-piece" draggable="true" style="background-position: -100px -200px;"></div>
-    <div id="piece15" class="puzzle-piece" draggable="true" style="background-position: -200px -200px;"></div>
-    <div id="piece16" class="puzzle-piece" draggable="true" style="background-position: -300px -200px;"></div>
-    <div id="piece17" class="puzzle-piece" draggable="true" style="background-position: -400px -200px;"></div>
-    <div id="piece18" class="puzzle-piece" draggable="true" style="background-position: -500px -200px;"></div>
-    <div id="piece19" class="puzzle-piece" draggable="true" style="background-position: 0 -300px;"></div>
-    <div id="piece20" class="puzzle-piece" draggable="true" style="background-position: -100px -300px;"></div>
-    <div id="piece21" class="puzzle-piece" draggable="true" style="background-position: -200px -300px;"></div>
-    <div id="piece22" class="puzzle-piece" draggable="true" style="background-position: -300px -300px;"></div>
-    <div id="piece23" class="puzzle-piece" draggable="true" style="background-position: -400px -300px;"></div>
-    <div id="piece24" class="puzzle-piece" draggable="true" style="background-position: -500px -300px;"></div>
-    <div id="piece25" class="puzzle-piece" draggable="true" style="background-position: 0 -400px;"></div>
-    <div id="piece26" class="puzzle-piece" draggable="true" style="background-position: -100px -400px;"></div>
-    <div id="piece27" class="puzzle-piece" draggable="true" style="background-position: -200px -400px;"></div>
-    <div id="piece28" class="puzzle-piece" draggable="true" style="background-position: -300px -400px;"></div>
-    <div id="piece29" class="puzzle-piece" draggable="true" style="background-position: -400px -400px;"></div>
-    <div id="piece30" class="puzzle-piece" draggable="true" style="background-position: -500px -400px;"></div>
-    <div id="piece31" class="puzzle-piece" draggable="true" style="background-position: 0 -500px;"></div>
-    <div id="piece32" class="puzzle-piece" draggable="true" style="background-position: -100px -500px;"></div>
-    <div id="piece33" class="puzzle-piece" draggable="true" style="background-position: -200px -500px;"></div>
-    <div id="piece34" class="puzzle-piece" draggable="true" style="background-position: -300px -500px;"></div>
-    <div id="piece35" class="puzzle-piece" draggable="true" style="background-position: -400px -500px;"></div>
-    <div id="piece36" class="puzzle-piece" draggable="true" style="background-position: -500px -500px;"></div>
-</div>
+    <img
+      id="complete-image"
+      src="../img/puzzle.jpg"
+      alt="Completed Puzzle"
+      style="display: none; width: 600px; height: 600px; margin: 20px auto"
+    />
 
-<script>
+    <button id="restart-button" class="custom-button">Restart Puzzle</button>
 
-    // Show the instructions popup when the page loads
-    window.onload = function() {
-    document.getElementById('instructions-popup').style.display = 'flex';
-    };
+    <button id="back-button" class="custom-button">Back</button>
 
-    document.getElementById('start-instructions').addEventListener('click', function() {
-        document.getElementById('instructions-popup').style.display = 'none'; // Hide the instructions
-        document.getElementById('background-music').play();
-    });
+    <div id="pieces">
+      <!-- Puzzle Pieces (6x6 grid, shuffled) -->
+      <div
+        id="piece1"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: 0 0"
+      ></div>
+      <div
+        id="piece2"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -100px 0"
+      ></div>
+      <div
+        id="piece3"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -200px 0"
+      ></div>
+      <div
+        id="piece4"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -300px 0"
+      ></div>
+      <div
+        id="piece5"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -400px 0"
+      ></div>
+      <div
+        id="piece6"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -500px 0"
+      ></div>
+      <div
+        id="piece7"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: 0 -100px"
+      ></div>
+      <div
+        id="piece8"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -100px -100px"
+      ></div>
+      <div
+        id="piece9"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -200px -100px"
+      ></div>
+      <div
+        id="piece10"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -300px -100px"
+      ></div>
+      <div
+        id="piece11"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -400px -100px"
+      ></div>
+      <div
+        id="piece12"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -500px -100px"
+      ></div>
+      <div
+        id="piece13"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: 0 -200px"
+      ></div>
+      <div
+        id="piece14"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -100px -200px"
+      ></div>
+      <div
+        id="piece15"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -200px -200px"
+      ></div>
+      <div
+        id="piece16"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -300px -200px"
+      ></div>
+      <div
+        id="piece17"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -400px -200px"
+      ></div>
+      <div
+        id="piece18"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -500px -200px"
+      ></div>
+      <div
+        id="piece19"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: 0 -300px"
+      ></div>
+      <div
+        id="piece20"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -100px -300px"
+      ></div>
+      <div
+        id="piece21"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -200px -300px"
+      ></div>
+      <div
+        id="piece22"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -300px -300px"
+      ></div>
+      <div
+        id="piece23"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -400px -300px"
+      ></div>
+      <div
+        id="piece24"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -500px -300px"
+      ></div>
+      <div
+        id="piece25"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: 0 -400px"
+      ></div>
+      <div
+        id="piece26"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -100px -400px"
+      ></div>
+      <div
+        id="piece27"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -200px -400px"
+      ></div>
+      <div
+        id="piece28"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -300px -400px"
+      ></div>
+      <div
+        id="piece29"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -400px -400px"
+      ></div>
+      <div
+        id="piece30"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -500px -400px"
+      ></div>
+      <div
+        id="piece31"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: 0 -500px"
+      ></div>
+      <div
+        id="piece32"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -100px -500px"
+      ></div>
+      <div
+        id="piece33"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -200px -500px"
+      ></div>
+      <div
+        id="piece34"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -300px -500px"
+      ></div>
+      <div
+        id="piece35"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -400px -500px"
+      ></div>
+      <div
+        id="piece36"
+        class="puzzle-piece"
+        draggable="true"
+        style="background-position: -500px -500px"
+      ></div>
+    </div>
 
-    const piecesContainer = document.getElementById('pieces');
-    const pieces = Array.from(document.getElementsByClassName('puzzle-piece'));
-    const dropzones = Array.from(document.getElementsByClassName('dropzone'));
+    <script>
+      // Show the instructions popup when the page loads
+      window.onload = function () {
+        document.getElementById("instructions-popup").style.display = "flex";
+      };
 
-    // Shuffle the pieces before adding them to the container
-    pieces.sort(() => Math.random() - 0.5);
-    pieces.forEach(piece => piecesContainer.appendChild(piece));
+      document
+        .getElementById("start-instructions")
+        .addEventListener("click", function () {
+          document.getElementById("instructions-popup").style.display = "none"; // Hide the instructions
+          document.getElementById("background-music").play();
+        });
 
-    pieces.forEach(piece => {
-        piece.addEventListener('dragstart', handleDragStart);
-    });
+      const piecesContainer = document.getElementById("pieces");
+      const pieces = Array.from(
+        document.getElementsByClassName("puzzle-piece")
+      );
+      const dropzones = Array.from(document.getElementsByClassName("dropzone"));
 
-    dropzones.forEach(dropzone => {
-        dropzone.addEventListener('dragover', handleDragOver);
-        dropzone.addEventListener('drop', handleDrop);
-    });
+      // Shuffle the pieces before adding them to the container
+      pieces.sort(() => Math.random() - 0.5);
+      pieces.forEach((piece) => piecesContainer.appendChild(piece));
 
-    function handleDragStart(e) {
-        e.dataTransfer.setData('text/plain', e.target.id);
+      pieces.forEach((piece) => {
+        piece.addEventListener("dragstart", handleDragStart);
+        piece.addEventListener("dragend", handleDragEnd);
+      });
+
+      dropzones.forEach((dropzone) => {
+        dropzone.addEventListener("dragover", handleDragOver);
+        dropzone.addEventListener("drop", handleDrop);
+      });
+
+      function handleDragStart(e) {
+        e.dataTransfer.setData("text/plain", e.target.id);
         setTimeout(() => {
-            e.target.classList.add('hide');
+          e.target.classList.add("hide");
         }, 0);
-    }
+      }
 
-    function handleDragOver(e) {
-        e.preventDefault();
-    }
+      function handleDragEnd(e) {
+        e.target.classList.remove("hide"); // Remove hide after drop
+      }
 
-    function handleDrop(e) {
+      function handleDragOver(e) {
         e.preventDefault();
-        const id = e.dataTransfer.getData('text');
+      }
+
+      function handleDrop(e) {
+        e.preventDefault();
+        const id = e.dataTransfer.getData("text");
         const piece = document.getElementById(id);
 
-        if (!e.target.classList.contains('puzzle-piece') && !e.target.firstChild) {
+        // Check if the dropzone is empty
+        if (e.target.classList.contains("dropzone")) {
+          if (e.target.children.length === 0) {
+            // Drop the piece in the dropzone
             e.target.appendChild(piece);
-            piece.classList.remove('hide');
+          } else {
+            // If there is already a piece, move the current piece back to the container
+            piecesContainer.appendChild(piece);
+          }
+
+          checkPuzzleCompletion();
         }
-    }
-</script>
+      }
 
-</body>
+      function checkPuzzleCompletion() {
+        let isComplete = true;
+
+        // Check if all pieces are in the correct drop zones
+        dropzones.forEach((dropzone) => {
+          const pieceInZone = dropzone.firstChild;
+          if (!pieceInZone || dropzone.dataset.piece !== pieceInZone.id) {
+            isComplete = false;
+          }
+        });
+
+        // If the puzzle is complete, show the full image
+        if (isComplete) {
+          document.getElementById("puzzle-frame").style.display = "none"; // Hide puzzle
+          document.getElementById("complete-image").style.display = "block"; // Show completed image
+          localStorage.setItem('puzzleDone', true);
+        }
+      }
+
+      // Restart button functionality
+      document
+        .getElementById("restart-button")
+        .addEventListener("click", restartGame);
+
+      function restartGame() {
+        pieces.forEach((piece) => {
+          piecesContainer.appendChild(piece); // Move pieces back to the container
+        });
+      }
+
+      // Start the game and remove the instructions popup
+      document
+        .getElementById("start-instructions")
+        .addEventListener("click", function () {
+          document.getElementById("instructions-popup").style.display = "none";
+          document.getElementById("background-music").play();
+        });
+
+      document
+        .getElementById("back-button")
+        .addEventListener("click", function () {
+            window.location.href = 'chat.html';
+        });
+    </script>
+  </body>
 </html>
-
