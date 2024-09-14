@@ -5,6 +5,7 @@ body {
   font-family: "Josefin Sans", sans-serif;
   font-size: 15px;
   overflow-x: hidden;
+  cursor: url('../img/Redhearts.gif'), auto;
 }
 
 *::-webkit-scrollbar {

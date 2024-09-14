@@ -2,6 +2,7 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+  cursor: url('../img/Redhearts.gif'), auto;
 }
 
 #puzzle-frame {
