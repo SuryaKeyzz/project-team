@@ -65,7 +65,7 @@ window.addEventListener(
   { passive: false }
 );
 
-const text1 = "I hope i never meet him again";
+const text1 = "I hope i never meet them again";
 const text2 = "Ever!!";
 
 let index1 = 0;

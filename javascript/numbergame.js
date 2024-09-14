@@ -83,7 +83,7 @@ function checkInput() {
         if (timeRemaining <= 0) {
             showPopup('Time is up! Hide now.');
             setTimeout(() => {
-                window.location.href = 'parallax.html';
+                window.location.href = 'badending.html';
             }, 2000);
         } else {
             updateTimerDisplay();
@@ -101,7 +101,7 @@ function startTimer() {
             clearInterval(timerInterval);
             showPopup('Time is up! Hide now.');
             setTimeout(() => {
-                window.location.href = 'parallax.html';
+                window.location.href = 'badending.html';
             }, 2000);
         }
     }, 1000);
