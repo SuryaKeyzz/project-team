@@ -1490,7 +1490,15 @@ function handleManualSave() {
         });
         replyOptions.appendChild(skipButton);
       }
-    });
+      else if (audioElement.src.includes("Girlsing.mp3")) {
+        const skipButton = document.createElement("button");
+        skipButton.textContent = "Skip";
+        skipButton.classList.add("reply-button");
+        skipButton.addEventListener("click", () => {
+          audioElement.currentTime = audioElement.duration - 1;
+        });
+        replyOptions.appendChild(skipButton);
+    }});
 
     function startConversation() {
       updateAudioSource(conversation[0].s);
