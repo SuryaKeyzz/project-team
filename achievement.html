@@ -85,24 +85,13 @@
         #achievementName {
             font-weight: 600;
         }
-
-        #achievementCount {
-            text-align: center;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Your Achievements</h1>
+        <h1>Your Achievement</h1>
         <div id="achievements-container" class="achievements-grid">
             <!-- Achievements will be dynamically added here -->
-        </div>
-
-        <div id="achievementCount">
-            <!-- Unlocked achievement count will be displayed here -->
         </div>
     </div>
 
@@ -114,84 +103,54 @@
         const achievementsContainer = document.getElementById('achievements-container');
         const achievementPopup = document.getElementById('achievementPopup');
         const achievementName = document.getElementById('achievementName');
-        const achievementCount = document.getElementById('achievementCount');
 
-        // Achievements data
         const achievements = [
             { id: 1, name: "First Match", description: "Welcome to the adventure!" },
-            { id: 2, name: "Profile Maestro", description: "Create a Profile" },
-            { id: 3, name: "Social Butterfly", description: "Spread your wings, make 3 friends" },
-            { id: 4, name: "Survivor", description: "You escaped the stalker" },
-            { id: 5, name: "Detective", description: "You solved the puzzle" },
-            { id: 6,name: "First Chat", description: "Make your first move"}
+            { id: 2, name: "Profile Maestro", description: "Craft your digital identity" },
+            { id: 3, name: "Social Butterfly", description: "Spread your wings, make 5 friends" },
+            { id: 4, name: "Content Creator", description: "Share your first post" },
+            { id: 5, name: "Explorer", description: "Visit 10 different pages" },
+            { id: 6, name: "Night Owl", description: "Log in after midnight" }
         ];
 
-        // Create achievement element (display "?" if not unlocked)
         function createAchievementElement(achievement) {
             const achievementElement = document.createElement('div');
             achievementElement.className = 'achievement';
-            
-            // Check if achievement is unlocked (exists in localStorage based on achievement name)
-            const unlocked = localStorage.getItem(achievement.name);
-            const achievementNameDisplay = unlocked ? achievement.name : "?";
-
             achievementElement.innerHTML = `
-                <h3>${achievementNameDisplay}</h3>
+                <h3>${achievement.name}</h3>
                 <p>${achievement.description}</p>
             `;
             return achievementElement;
         }
 
-        // Add achievements to the grid
-        function renderAchievements() {
-            achievementsContainer.innerHTML = '';
-            achievements.forEach(achievement => {
-                const achievementElement = createAchievementElement(achievement);
-                achievementsContainer.appendChild(achievementElement);
-            });
-            updateAchievementCount();
-        }
+        achievements.forEach(achievement => {
+            const achievementElement = createAchievementElement(achievement);
+            achievementsContainer.appendChild(achievementElement);
+        });
 
-        // Show achievement popup
         function showAchievement(achievementId) {
             const achievement = achievements.find(a => a.id === achievementId);
             if (achievement) {
                 achievementName.textContent = achievement.name;
                 achievementPopup.classList.add('show');
-
-                // Save unlocked achievement to localStorage (using the name as the key)
-                localStorage.setItem(achievement.name, true);
-
                 setTimeout(() => {
                     achievementPopup.classList.remove('show');
-                    // Refresh the grid to show unlocked achievements
-                    renderAchievements();
                 }, 3000);
             }
         }
 
-        // Count and display the number of unlocked achievements
-        function updateAchievementCount() {
-            const unlockedAchievements = achievements.filter(achievement => localStorage.getItem(achievement.name));
-            const unlockedCount = unlockedAchievements.length;
-            achievementCount.textContent = `You have unlocked ${unlockedCount} out of ${achievements.length} achievements.`;
-        }
-
-        // Initial render of achievements
-        renderAchievements();
-
         // Example usage: Unlock achievements at intervals
-       // let currentAchievement = 1;
+        //let currentAchievement = 1;
         //function unlockNextAchievement() {
            // if (currentAchievement <= achievements.length) {
                // showAchievement(currentAchievement);
                 //currentAchievement++;
-              //  setTimeout(unlockNextAchievement, 5000); // Unlock next achievement after 5 seconds
-          //  }
+                //setTimeout(unlockNextAchievement, 5000); // Unlock next achievement after 5 seconds
+            //}
        // }
 
         // Start unlocking achievements (for demonstration purposes)
-      //  unlockNextAchievement();
+        unlockNextAchievement();
     </script>
 </body>
 </html>

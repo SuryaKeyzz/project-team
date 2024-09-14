@@ -123,3 +123,24 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+
+
+.button-container{
+  text-align: center;
+  margin-top: 20px;
+}
+#Homepage {
+  background-color: #d2af76;
+  color: #010302;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: "Josefin Sans", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 20px;
+}
+
+#Homepage:hover{
+  background-color: #b89356;
+}

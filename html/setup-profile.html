@@ -155,6 +155,15 @@
       </div>
     </div>
 
+
+
+    <div id="achievementPopup" class="achievement-popup">
+      <div class="achievement-content">
+        <h3>Achievement Unlocked!</h3>
+        <p>"First Date"</p>
+      </div>
+    </div>
+
     <script>
       function previewImage(event, imgId) {
         const file = event.target.files[0];
@@ -173,21 +182,41 @@
           .forEach((button) => {
             button.classList.remove("selected");
           });
+    
         // Select the clicked option
-        document.getElementById(id).classList.add('selected');
+        document.getElementById(id).classList.add("selected");
+    
+        // Store the selected gender in localStorage
+        if (group === "gender") {
+          const gender = id === "male" ? "Male" : "Female";
+          localStorage.setItem("UserGender", gender);
+        }
+    
+        // Store the selected interest
+        if (group === "interest") {
+          const interest = id === "male-interest"
+            ? "Male"
+            : id === "female-interest"
+            ? "Female"
+            : "Everyone";
+          localStorage.setItem("UserInterest", interest);
+        }
       }
     
-        // Adding event listener to the button
-        document.getElementById('submitbutton').addEventListener('click', function() {
-          // Get the value of the username input field
-          const username = document.getElementById('username').value;
-
-          // Save the value in localStorage
-          localStorage.setItem('UserName', username);
-
-          // Optional: Confirmation message
-          alert('Username saved: ' + username);
+      // Adding event listener to the submit button
+      document.getElementById('submitbutton').addEventListener('click', function() {
+        // Get the value of the username input field
+        const username = document.getElementById('username').value;
+        alert('Achievement Unlocked: Profile Maestro!');
+        localStorage.setItem('Profile Maestro', true);
+    
+        // Save the username in localStorage
+        localStorage.setItem('UserName', username);
+    
+        // Optional: Confirmation message
+        alert('Username saved: ' + username);
       });
     </script>
+    
   </body>
 </html>

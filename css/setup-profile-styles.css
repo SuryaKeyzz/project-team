@@ -196,3 +196,33 @@ button[type="submit"]:hover {
     transform: scale(1.03);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
+
+
+/* achievement show up */
+.achievement-popup {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.achievement-content {
+    text-align: center;
+}
+
+.achievement-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.achievement-content p {
+    margin: 0;
+    font-size: 16px;
+}

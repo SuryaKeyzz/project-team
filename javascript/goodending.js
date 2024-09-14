@@ -108,6 +108,22 @@ function showContent() {
   document.body.style.overflow = "auto";
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  const homepageButton = document.getElementById('Homepage');
+  
+  homepageButton.addEventListener('click', function() {
+    // Remove gameState from localStorage
+    localStorage.removeItem('gameState');
+    localStorage.removeItem('lastMatchedName');
+    localStorage.removeItem('lastMatchedImage');
+    localStorage.removeItem('hasReachedThirdMatch');
+    
+    // Redirect to index.html
+    window.location.href = '.././index.html';
+  });
+});
+
+
 window.onload = function () {
   typeText1();
 };

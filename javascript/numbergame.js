@@ -1,15 +1,28 @@
-document.getElementById('start-game').addEventListener('click', startGame);
+window.onload = function() {
+    document.getElementById('instructions-popup').style.display = 'flex';
+};
+
+document.getElementById('start-instructions').addEventListener('click', function() {
+    document.getElementById('instructions-popup').style.display = 'none'; // Hide the instructions
+    startGame(); // Start the game
+});
+
+
+//document.getElementById('start-game').addEventListener('click', startGame);
 document.getElementById('submit').addEventListener('click', checkInput);
 document.getElementById('clear').addEventListener('click', clearInput);
-
+document.getElementById('skip').addEventListener('click', skipQuestion);
 let firstNumber = 0;
 let secondNumber = 0;
 let roundsCompleted = 0; // Track the number of successful rounds
 const totalRounds = 3;    // Total rounds needed to win
-let timeRemaining = 20;   // 20-second time limit
+let timeRemaining = 30;   // 20-second time limit
 let timerInterval;        // To store the timer interval
 
 function startGame() {
+    // Start playing the background music
+    document.getElementById('background-music').play();
+
     resetTimer();         // Reset the timer for a new game
     startTimer();         // Start the timer
     startRound();         // Start the first round
@@ -20,6 +33,19 @@ function startRound() {
     secondNumber = generateRandomNumber();
     displayNumbers(firstNumber, secondNumber);
     setTimeout(hideNumbers, 2000); // Show the numbers for 2 seconds
+}
+
+function skipQuestion() {
+    showPopup('You skipped the question!');
+    //timeRemaining -= 3; // Deduct 3 seconds for skipping, or adjust as needed
+
+    if (timeRemaining <= 0) {
+        showPopup('Time is up. Hide now.');
+        resetGame();
+    } else {
+        updateTimerDisplay();
+        startRound(); // Start the next round
+    }
 }
 
 function generateRandomNumber() {
@@ -41,19 +67,21 @@ function checkInput() {
     if (userInput === correctAnswer) {
         roundsCompleted++;
         if (roundsCompleted === totalRounds) {
-            showPopup('Congratulations! You completed all rounds successfully!');
+            showPopup('Congratulations! The Police arrived on time!');
+            showPopup('You Unlocked new Achievement: Survivor!')
+            localStorage.setItem('Survivor', true);
             setTimeout(() => {
                 window.location.href = 'goodending.html';
             }, 2000);
         } else {
-            showPopup('Correct! Well done! Get ready for the next round.');
+            showPopup('Correct! Answer 3 to call the Police');
             startRound(); // Start the next round
         }
     } else {
         showPopup('Incorrect! The correct answer was ' + correctAnswer);
         timeRemaining -= 3; // Deduct 3 seconds for incorrect answer
         if (timeRemaining <= 0) {
-            showPopup('Time is up! Game over.');
+            showPopup('Time is up! Hide now.');
             setTimeout(() => {
                 window.location.href = 'parallax.html';
             }, 2000);
@@ -71,7 +99,7 @@ function startTimer() {
         updateTimerDisplay();
         if (timeRemaining <= 0) {
             clearInterval(timerInterval);
-            showPopup('Time is up! Game over.');
+            showPopup('Time is up! Hide now.');
             setTimeout(() => {
                 window.location.href = 'parallax.html';
             }, 2000);

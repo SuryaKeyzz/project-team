@@ -120,11 +120,13 @@ document.getElementById("Play").addEventListener("click", function (event) {
 });
 
 // Function to handle Play button click in sub-hero section
-document.getElementById("SubHeroPlay").addEventListener("click", function (event) {
-  // Check if user is logged in
-  const isLoggedIn = localStorage.getItem("loggedInUser");
+document
+  .getElementById("SubHeroPlay")
+  .addEventListener("click", function (event) {
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem("loggedInUser");
 
-  if (!isLoggedIn) {
+    if (!isLoggedIn) {
       // Prevent navigation
       event.preventDefault();
       // Show login popup
@@ -132,16 +134,23 @@ document.getElementById("SubHeroPlay").addEventListener("click", function (event
       loginPopup.classList.remove("hidden");
       loginPopup.classList.add("flex");
       showLoginForm();
-  } else {
+    } else {
       // User is logged in, allow navigation to the game
       // You might want to do additional checks or log the user action here
-  }
-});
+    }
+  });
 
+/// Function to display profile picture and username
 /// Function to display profile picture and username
 function displayUserProfile(url, username) {
   const profileContainer = document.createElement("div");
-  profileContainer.className = "profile-container flex items-center";
+  profileContainer.className =
+    "profile-container flex items-center cursor-pointer";
+
+  // Add click event listener to the profile container
+  profileContainer.addEventListener("click", function () {
+    window.location.href = "/html/achievement.html";
+  });
 
   const profileImage = document.createElement("img");
   profileImage.src = url;
@@ -184,7 +193,9 @@ if (loginForm) {
 
       displayUserProfile(profilePictureUrl, storedUser.username);
     } else {
-      alert("Email or password is invalid, or account not created yet. Please sign up.");
+      alert(
+        "Email or password is invalid, or account not created yet. Please sign up."
+      );
       showRegisterForm();
     }
   });

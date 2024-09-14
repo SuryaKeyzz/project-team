@@ -65,7 +65,7 @@ window.addEventListener(
   { passive: false }
 );
 
-const text1 = "Do you hear The screams";
+const text1 = "You hear the screams";
 const text2 = "Don't you?";
 
 let index1 = 0;
@@ -102,14 +102,43 @@ function typeText2() {
   }
 }
 
-let backgroundAudio = document.getElementById('backgroundAudio');
+let backgroundAudio = document.getElementById("backgroundAudio");
+let Gender = localStorage.getItem("UserGender");
+// Change audio based on gender
+if (Gender === "Female") {
+  backgroundAudio.innerHTML = '<source src="../audio/Woman Scream.MP3" type="audio/mpeg">';
+} else {
+  backgroundAudio.innerHTML = '<source src="../audio/Male-HorrorScream.mp3" type="audio/mpeg">';
+}
+
+// Function to start audio when the page loads
+function playAudio() {
+  backgroundAudio.load(); // Ensure the audio is loaded
+  backgroundAudio.play(); // Play the background audio
+}
 
 function showContent() {
   document.getElementById("loadingScreen").classList.add("hidden");
   document.querySelector(".container").style.display = "block";
   document.body.style.overflow = "auto";
-  backgroundAudio.play(); // Play the background audio on page load
+  playAudio(); // Play audio when content is revealed
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const homepageButton = document.getElementById("Homepage");
+
+  homepageButton.addEventListener("click", function () {
+    // Remove gameState from localStorage
+    localStorage.removeItem("gameState");
+    localStorage.removeItem("lastMatchedName");
+    localStorage.removeItem("lastMatchedImage");
+    localStorage.removeItem("hasReachedThirdMatch");
+
+    // Redirect to index.html
+    window.location.href = ".././index.html";
+  });
+});
 
 window.onload = function () {
   typeText1();

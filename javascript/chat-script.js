@@ -16,15 +16,42 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadButton = document.getElementById("loadButton");
   const matchedName = localStorage.getItem("lastMatchedName");
   const userName = localStorage.getItem("UserName");
+  const Gender = localStorage.getItem("lastMatchedGender")
 
   //  voice dialogue
   let yomp =
     '<a href="../html/tictactoe.html" style="color: white;">Tic Tac Toe</a>';
+  
   let voice1 =
     '<audio controls><source src="../audio/halbert1.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
-  let voicesing =
-    '<audio controls><source src="../audio/Singing.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+  
+    let voiceend1 =
+    '<audio controls><source src="../audio/End1.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+    let voiceend2 =
+    '<audio controls><source src="../audio/End2.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+    let voiceend3 =
+    '<audio controls><source src="../audio/End3.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+    let voiceend4 =
+    '<audio controls><source src="../audio/End4.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+    let voiceend5 =
+    '<audio controls><source src="../audio/End5.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
 
+    if(Gender == "Female"){
+      voice1 = '<audio controls><source src="../audio/voicegirl.m4a" type="audio/mpeg">Your browser does not support the audio element</audio>'
+       voiceend1 =
+      '<audio controls><source src="../audio/EndW1.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+      voiceend2 =
+      '<audio controls><source src="../audio/EndW2.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+       voiceend3 =
+      '<audio controls><source src="../audio/EndW3.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+       voiceend4 =
+      '<audio controls><source src="../audio/EndW4.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+       voiceend5 =
+      '<audio controls><source src="../audio/EndW5.mp3" type="audio/mpeg">Your browser does not support the audio element</audio>';
+    }
+
+  const Endingimg = '<img width = 300px height = 300px src="../img/Endingphoto.png"></img>'  
+  const Endingimg1 = '<img width = 300px height = 300px src="../img/Endingphoto2.jpg"></img>'
   const dialogues = {
     day1: {
       start: [
@@ -300,7 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
               next: "early",
             },
             {
-              text: "Hey, are you busy?",
+              text: "Heyyy. Someone's an early bird",
               next: "early",
             },
           ],
@@ -333,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text: `Good luck at work.`,
           options: [
             {
-              text: "*Go to work*",
+              text: "*Go to Work*",
               next: "start",
             },
           ],
@@ -347,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       ticTacToe: [
         {
-          text: `Sent an invitation to play tictactoe ${yomp}`,
+          text: `Sent an invitation to play ${yomp}`,
           options: [
             {
               text: "HAHA You dare challenge me? Let's play, cutie",
@@ -401,10 +428,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       afterGame: [
         {
-          text: "Thanks for letting me let off some steam after work. That was pretty fun",
+          text: "That was fun.",
           options: [
             {
-              text: "Yeah, it was fun! Glad I could help you relax.",
+              text: "It really was. Thanks for letting me let off some steam after work. That was pretty fun",
               next: "askAboutWork",
             },
           ],
@@ -434,7 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       expressFeeling: [
         {
-          text: "That sounds rough. How do you feel about it?",
+          text: "That sounds rough.",
           options: [
             { text: "I wish she would die", next: "reaction1" },
             { text: "I want to quit!", next: "reaction2" },
@@ -447,10 +474,10 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       reaction1: [
         {
-          text: "Woah!! Calm down, [name]. That's way too much.",
+          text: `Woah!! Calm down, ${userName}. That's way too much.`,
           options: [
             {
-              text: "You're right, sorry. I shouldn't say things like that.",
+              text: "You're right, sorry. I shouldn't say things like that",
               next: "askForDetails",
             },
           ],
@@ -461,7 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text: "Oh don't let her make you do that. If she's the one causing you trouble then why should you be the one to leave?",
           options: [
             {
-              text: "You have a point. It's just so frustrating.",
+              text: "You have a point. It's just so frustrating",
               next: "askForDetails",
             },
           ],
@@ -472,7 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text: "Damn, that's horrible. It must be tough working with those kind of people",
           options: [
             {
-              text: "It really is. I don't know how to deal with it.",
+              text: "It really is. I don't know how to deal with her",
               next: "askForDetails",
             },
           ],
@@ -483,7 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text: "Can you tell me what happened?",
           options: [
             {
-              text: "Gladly. So. This morning I arrived on time. Bianca might tell you otherwise but I am sure that I wasn't late. Anyway, she insisted that I was a minute late. And my boss, let me tell you is the strictest, most hateble boss you could have. He believed whatever nonsense Bianca whispered in those big ears of his and I got in trouble.",
+              text: "Gladly. So. This morning I arrived on time. Bianca might tell you otherwise but I am sure that I wasn't late. Anyway, she insisted that I was a minute late. And my boss, let me tell you is the strictest, most hateable boss you could have. He believed whatever nonsense Bianca whispered in those big ears of his and I got in trouble.",
               next: "moreDetails",
             },
           ],
@@ -502,10 +529,21 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       biancaComments: [
         {
-          text: "What kind of things was she saying?",
+          text: "What kind of comments?",
           options: [
             {
               text: '"You should be kinder, that girl\'s worried sick ya know," "Work quicker, that turtle\'s not gonna get better on its own" and so mannnnyyyy more',
+              next: "playerTell",
+            },
+          ],
+        },
+      ],
+      playerTell: [
+        {
+          text: "She should mind her own business.",
+          options: [
+            {
+              text: 'You want to know what I told her?',
               next: "playerReaction",
             },
           ],
@@ -513,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       playerReaction: [
         {
-          text: "So, you know what I told her?",
+          text: "Oh no... What?",
           options: [
             {
               text: "Nothing, actually. I'm quite the inferior type at work, one of my biggest regrets is not telling her off honestly",
@@ -602,7 +640,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text: "Did that cheer you up?",
           options: [
             {
-              text: "Thank you, cute boy. You get some sleep too. We'll talk again tomorrow, okay?",
+              text: "Thank you, cutie. You get some sleep too. We'll talk again tomorrow, okay?",
               next: null,
             },
           ],
@@ -645,24 +683,24 @@ document.addEventListener("DOMContentLoaded", () => {
       promise: [
         {
           text: "I promise. You can tell me.",
-          options: [{ text: "Okay, here goes...", next: "explainStalker" }],
+          options: [{ text: "Okay, fine… Maybe I'm being paranoid but I could've sworn that someone was following me today", next: "explainStalker" }],
         },
       ],
       unbelievable: [
         {
           text: "Maybe, but it won't cost you anything if you tell me so go ahead.",
-          options: [{ text: "Alright, I'll tell you", next: "explainStalker" }],
+          options: [{ text: "Okay, fine… Maybe I'm being paranoid but I could've sworn that someone was following me today", next: "explainStalker" }],
         },
       ],
       shouldSay: [
         {
           text: "I can give you some advice",
-          options: [{ text: "Fine, I'll explain", next: "explainStalker" }],
+          options: [{ text: "Okay, fine… Maybe I'm being paranoid but I could've sworn that someone was following me today", next: "explainStalker" }],
         },
       ],
       explainStalker: [
         {
-          text: "Okay, fine… Maybe I'm being paranoid but I could've sworn that someone was following me today",
+          text: "What?",
           options: [
             {
               text: "I'm pretty sure I'm right but it's weird right? Why would anyone follow me? I'm just a regular, overworked person",
@@ -690,6 +728,17 @@ document.addEventListener("DOMContentLoaded", () => {
           options: [
             {
               text: "I didn't see the guy. Not really, I caught a glimpse of him every now and then but every time I turned around, there was no one there. But when I pass near windows and stuff, I can see someone wearing a black hoodie and mask behind me, hiding around a corner",
+              next: "soundDangerous",
+            },
+          ],
+        },
+      ],
+      soundDangerous: [
+        {
+          text: "That sounds dangerous if true.",
+          options: [
+            {
+              text: "So I’m not 100% sure he was following me, but it was strange. Don’t you think? If he wasn’t a bad guy, he wouldn’t be sneaking around like that",
               next: "explainMore",
             },
           ],
@@ -829,9 +878,31 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           text: "I'm texting you because I miss you. Do you not miss me?",
           options: [
-            { text: "Aww… I miss you too", next: "playerLeave" },
-            { text: "Maybe?", next: "playerLeave" },
+            { text: "Aww… I miss you too", next: "alexHeart" },
+            { text: "Maybe?", next: "alexAdorable" },
             { text: "No, not at all", next: "alexOuch" },
+          ],
+        },
+      ],
+      alexHeart: [
+        {
+          text: "<3",
+          options: [
+            {
+              text: "Okay, I have to go now. Hope the two of us survive our work",
+              next: "alexSeeYouSoon",
+            },
+          ],
+        },
+      ],
+      alexAdorable: [
+        {
+          text: "You're adorable.",
+          options: [
+            {
+              text: "Okay, I have to go now. Hope the two of us survive our work",
+              next: "alexSeeYouSoon",
+            },
           ],
         },
       ],
@@ -841,7 +912,7 @@ document.addEventListener("DOMContentLoaded", () => {
           options: [
             {
               text: "That's too bad, I hope it stops soon",
-              next: "playerLeave",
+              next: "alexHope",
             },
           ],
         },
@@ -849,7 +920,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alexCute: [
         {
           text: "HAHA You're cute. I hope so too ;)",
-          options: [{ text: "Stop it, you cutie.", next: "playerLeave" }],
+          options: [{ text: "Okay, I have to go now. Hope the two of us survive our work", next: "alexSeeYouSoon" }],
         },
       ],
       alexOuch: [
@@ -863,45 +934,45 @@ document.addEventListener("DOMContentLoaded", () => {
           ],
         },
       ],
-      playerLeave: [
+      alexHope: [
         {
-          text: "Okay, I have to go now. Hope the two of us survive our work",
-          options: [{ text: "See you soon.", next: "afterWork" }],
+          text: "I hope so too",
+          options: [{ text: "Okay, I have to go now. Hope the two of us survive our work", next: "alexSeeYouSoon" }],
         },
       ],
       alexSeeYouSoon: [
         {
           text: "See you soon.",
-          options: [{ text: "After work...", next: "afterWork" }],
+          options: [{ text: "*Go to Work*", next: "afterWork" }],
         },
       ],
       afterWork: [
         {
-          text: "Are you free right now? I want to talk",
-          options: [{ text: "Hey what's up?", next: "explainFlowers" }],
+          text: "Are you back yet?",
+          options: [{ text: "Yep. Are you free right now? I want to talk", next: "explainFlowers" }],
         },
       ],
       explainFlowers: [
         {
-          text: "I just got back from work, and I saw something outside my porch. It was a parcel, wrapped with newspaper and there was no sending receipt. I was a bit suspicious but I thought what's the harm?",
-          options: [{ text: "Continue...", next: "showFlowers" }],
+          text: "What's up?",
+          options: [{ text: "I just got back from work, and I saw something outside my porch. It was a parcel, wrapped with newspaper and there was no sending receipt. I was a bit suspicious but I thought what's the harm?", next: "showFlowers" }],
         },
       ],
       showFlowers: [
         {
-          text: "*picture of a flower bouquet*\nThey were flowers.",
-          options: [{ text: "They look nice.", next: "explainNote" }],
+          text: "What was it?",
+          options: [{ text: `${Endingimg}`, next: "talkFlowers" }],
         },
       ],
-      explainNote: [
+      talkFlowers: [
         {
-          text: "Sure, but that's not the point. I don't know who sent me those flowers. I thought for a moment that maybe it was Bianca who felt bad about what happened today. After all, she didn't bother me at all today.\n\nBut then, I saw that it had a note attached to it.",
-          options: [{ text: "What did the note say?", next: "showNote" }],
+          text: "They look nice",
+          options: [{ text: "Sure, but that's not the point. I don't know who sent me those flowers. I thought for a moment that maybe it was Bianca who felt bad about what happened today. After all, she didn't bother me at all today.\n\nBut then, I saw that it had a note attached to it.", next: "showNote" }],
         },
       ],
       showNote: [
         {
-          text: '*picture of the note that says, "Love me. I\'ll keep you safe."*',
+          text: `"Love me. I'll keep you safe."`,
           options: [
             { text: "What do I do?", next: "alexReassure" },
             {
@@ -1024,7 +1095,7 @@ document.addEventListener("DOMContentLoaded", () => {
           text: "Heyy, sweetheart. You didn't answer me yesterday. I'm sorry if I offended you but I really didn't mean anything bad by what I said...",
           options: [
             {
-              text: "You seem awfully sympathetic to the sender… Do you know him or something?",
+              text: "You seem awfully sympathetic to the sender… Do you know them or something?",
               next: "confrontation",
             },
             {
@@ -1058,73 +1129,67 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       accusation: [
         {
-          text: "I found the picture on your profile. It was taken near the vet shop where I work...",
-          options: [{ text: "Continue...", next: "confession" }],
+          text: `${userName}, you're not making any sense.`,
+          options: [{ text: "I found a picture on your profile. It was a picture of your journal. How can you explain that your handwriting is the exact same as the one who wrote the note with the flowers that I got?", next: "confession" }],
         },
       ],
       confession: [
         {
-          text: "Alright, I’ll confess….I wasn’t actually at work at that time…I was there to see you...",
-          options: [{ text: "Stop lying.", next: "lastMessage" }],
+          text: "Oh come on… That's just a coincidence. It just looks a little similar. You're too paranoid.",
+          options: [{ text: "Stop lying. You have been trying to gaslight me, but it's not working anymore", next: "lastMessage" }],
         },
       ],
       lastMessage: [
         {
-          text: "I’m texting you for the last time to say, I want to stop talking to you...",
-          options: [{ text: "......", next: "creepyVoice" }],
+          text: " Alright, I’ll confess… I may have lied a bit, but I swear, I’m not trying to hurt you. I genuinely think you’re adorable. And I just couldn’t resist the urge to come see you. I know it may seem obsessive, but that’s because I can’t stop thinking about you.",
+          options: [{ text: " I’m texting you for the last time to say, I want to stop talking to you. I don’t know what sort of sick thoughts you have of me in your head but I want none of it.", next: "creepyVoice" }],
         },
       ],
       creepyVoice: [
         {
-          text: "*Creepy voice*",
+          text: "I understand now that you’re uncomfortable with what I did. I promise I’m going to stop stalking you… But please, can I at least talk to you in private? I swear I’m not going to do anything bad or weird.",
           options: [{ text: "......", next: "voiceNote1" }],
         },
       ],
       voiceNote1: [
         {
-          text: "Sent a voice note = Heavy breathing",
+          text: `${userName}?`,
           options: [{ text: "......", next: "voiceNote2" }],
         },
       ],
       voiceNote2: [
         {
-          text: "Sent a voice note = “I love you so much. Why won’t you love me back?”",
+          text: `${voiceend1}`,
           options: [{ text: "......", next: "voiceNote3" }],
         },
       ],
       voiceNote3: [
         {
-          text: "Sent a voice note = “I’m not trying to hurt you… So please just love me~”",
+          text: `${voiceend2}`,
           options: [{ text: "......", next: "voiceNote4" }],
         },
       ],
       voiceNote4: [
         {
-          text: "Sent a voice note = “Sweetheart, please answer…”",
+          text: `${voiceend3}`,
           options: [{ text: "......", next: "neighborhoodPicture" }],
         },
       ],
       neighborhoodPicture: [
         {
-          text: "Sent a picture of the player’s neighborhood",
+          text: `${Endingimg1}`,
           options: [{ text: "......", next: "voiceNote5" }],
         },
       ],
       voiceNote5: [
         {
-          text: "Sent a voice note = “Because you’re not answering… I’ll come to you myself”",
-          options: [{ text: "......", next: "housePicture" }],
-        },
-      ],
-      housePicture: [
-        {
-          text: "Sent a picture of the front of the player’s house",
+          text: `${voiceend4}`,
           options: [{ text: "......", next: "voiceNote6" }],
         },
       ],
       voiceNote6: [
         {
-          text: "Sent a voice note = “Please open the door… I want to see you…”",
+          text: `${voiceend5}`,
           options: [{ text: "......", next: null }],
         },
       ],
@@ -1166,10 +1231,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showAchievement() {
     achievementPopup.style.display = "flex";
+    localStorage.setItem('First Chat', true)
     setTimeout(() => {
       achievementPopup.style.display = "none";
     }, 3000);
   }
+
+  // New function to handle manual save
+function handleManualSave() {
+  saveProgress();
+  alert("Progress saved successfully!");
+}
 
   function handleResponse(nextStage, responseText) {
     displayMessage(responseText, [], true);
@@ -1177,49 +1249,46 @@ document.addEventListener("DOMContentLoaded", () => {
     sendButton.disabled = true;
 
     if (!firstChoiceMade) {
-      firstChoiceMade = true;
-      showAchievement();
+        firstChoiceMade = true;
+        showAchievement();
     }
 
     // Check if the selected response is "Yeah, I think I need company right now"
     if (responseText === "Yeah, I think I need company right now") {
-      document.getElementById("phoneContainer").style.display = "block";
-      document.getElementById("blockingLayer").style.display = "block"; // Show blocking layer
-      triggercall();
+        document.getElementById("phoneContainer").style.display = "block";
+        document.getElementById("blockingLayer").style.display = "block";
+        triggercall();
     }
 
     setTimeout(() => {
-      if (nextStage) {
-        console.log("Moving to next stage:", nextStage);
-        const stage = dialogues[currentDay][nextStage][0];
-        displayMessage(stage.text, stage.options, false);
-        currentStage = nextStage;
-      } else {
-        console.log("Conversation ended, currentDay:", currentDay);
-        if (currentDay === "day1") {
-          console.log("Day 1 ended, showing Start Day 2 button");
-          startDay2Button.style.display = "block";
-        } else if (currentDay === "day2") {
-          console.log("Day 2 ended, showing Start Day 3 button");
-          startDay3Button.style.display = "block";
-        } else if (currentDay === "day3") {
-          console.log("Day 3 ended, showing Start Day 4 button");
-          startDay4Button.style.display = "block";
-        } else if (currentDay === "day4") {
-          console.log("Day 4 ended, navigating to minigamepuzzle.html");
-          saveProgress();
-          startDay5Button.style.display = "block";
-        } else if (currentDay === "day5") {
-          console.log("Day 5 ended, navigating to minigame-keypad.html");
-          saveProgress();
-          window.location.href = "minigame-keypad.html";
+        if (nextStage) {
+            console.log("Moving to next stage:", nextStage);
+            currentStage = nextStage;
+            const stage = dialogues[currentDay][currentStage][0];
+            displayMessage(stage.text, stage.options, false);
+        } else {
+            console.log("Conversation ended, currentDay:", currentDay);
+            currentStage = "end";
+            if (currentDay === "day1") {
+                console.log("Day 1 ended, showing Start Day 2 button");
+                startDay2Button.style.display = "block";
+            } else if (currentDay === "day2") {
+                console.log("Day 2 ended, showing Start Day 3 button");
+                startDay3Button.style.display = "block";
+            } else if (currentDay === "day3") {
+                console.log("Day 3 ended, showing Start Day 4 button");
+                startDay4Button.style.display = "block";
+            } else if (currentDay === "day4") {
+                console.log("Day 4 ended, showing Start Day 5 button");
+                startDay5Button.style.display = "block";
+            } else if (currentDay === "day5") {
+                console.log("Day 5 ended, navigating to minigame-keypad.html");
+                window.location.href = "minigame-keypad.html";
+            }
         }
-
-        // Autosave progress after each day
-        saveProgress();
-      }
+      saveProgress();
     }, 500);
-  }
+}
 
   // phone call
   function triggercall() {
@@ -1239,27 +1308,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const conversation = [
       {
-        s: "../audio/stalker1.m4a",
+        s: Gender == "Female" ? "../audio/stalker1W.m4a":"../audio/stalker1.m4a",
         p: ["Hi", "Hey too", "Thanks for calling"],
       },
       {
-        s: "../audio/stalker2.m4a",
+        s: Gender == "Female" ? "../audio/stalker2W.m4a":"../audio/stalker2.m4a",
         p: ["I could be better", "I guess so", "No…"],
       },
       {
-        s: "../audio/stalker3.m4a",
+        s: Gender == "Female" ? "../audio/stalker3W.m4a" : "../audio/stalker3.m4a",
         p: ["Yeah, just keep the call", "I'm not sure", "Can you sing for me?"],
       },
       {
         s: {
-          1: "../audio/stalker4(1).m4a",
-          2: "../audio/stalker4(2).m4a",
-          3: "../audio/singing.mp3",
+          1: Gender == "Female"? "../audio/stalker4W.m4a":"../audio/stalker4(1).m4a",
+          2: Gender == "Female"? "../audio/stalker4W(2).m4a":"../audio/stalker4(2).m4a",
+          3: Gender == "Female"? "../audio/stalker4W(2).m4a":"../audio/stalker4(2).m4a",
         },
         p: ["Yes, please"],
       },
       {
-        s: "../audio/Singing.mp3",
+        s: Gender == "Female" ? "../audio/Girlsing.mp3":"../audio/Singing.mp3",
         p: [
           "Wow… You have the voice of an angel. Thank you",
           "Thanks for that",
@@ -1267,11 +1336,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
       },
       {
-        s: "../audio/stalker5.m4a",
+        s: Gender == "Female"? "../audio/stalker5W.m4a":"../audio/stalker5.m4a",
         p: ["Since we know my day was terrible, how's yours?"],
       },
       {
-        s: "../audio/stalker6.m4a",
+        s: Gender == "Female"? "../audio/stalker6W.m4a":"../audio/stalker6.m4a",
         p: [
           "That's nice. Can you make me one americano? I don't think I'll sleep tonight anyway",
           "I see. That's nice",
@@ -1280,22 +1349,22 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         s: {
-          1: "../audio/stalker7(1).m4a",
-          2: "../audio/stalker7(2).m4a",
-          3: "../audio/stalker7(3).m4a",
+          1: Gender == "Female"? "../audio/stalker7W.m4a" : "../audio/stalker7(1).m4a",
+          2: Gender == "Female"? "../audio/stalker7W(2).m4a" : "../audio/stalker7(2).m4a",
+          3: Gender == "Female"? "../audio/stalker7W(3).m4a" : "../audio/stalker7(3).m4a",
         },
         p: [
           "Sorry for being so negative today. I think I better take a warm shower and sleep this off.",
         ],
       },
       {
-        s: "../audio/stalker8.m4a",
+        s: Gender == "Female"? "../audio/stalker8W.m4a":"../audio/stalker8.m4a",
         p: [
           "You're such a flirt… But really, thanks for the call. It helped cheer me up a little",
         ],
       },
       {
-        s: "../audio/stalker9.m4a",
+        s: Gender == "Female"? "../audio/stalker9W.m4a":"../audio/stalker9.m4a",
         p: ["See you tomorrow"],
       },
     ];
@@ -1561,52 +1630,79 @@ function promptProfileClick() {
 }
 
 
-  function saveProgress() {
-    const progressData = {
-      currentDay,
-      currentStage,
-      chatMessages: chatMessages.innerHTML,
-      firstChoiceMade,
-    };
+function saveProgress() {
+  const gameState = {
+      currentDay: currentDay,
+      currentStage: currentStage,
+      firstChoiceMade: firstChoiceMade
+  };
+  localStorage.setItem('gameState', JSON.stringify(gameState));
+  console.log("Progress saved:", gameState);
+ 
+}
 
-    localStorage.setItem("chatProgress", JSON.stringify(progressData));
-    alert("Your progress has been saved");
+function loadProgress() {
+  const savedState = localStorage.getItem('gameState');
+  if (savedState) {
+      const gameState = JSON.parse(savedState);
+      currentDay = gameState.currentDay;
+      currentStage = gameState.currentStage;
+      firstChoiceMade = gameState.firstChoiceMade;
+      console.log("Progress loaded:", gameState);
+      return true;
   }
+  return false;
+}
 
-  function loadProgress() {
-    const savedProgress = localStorage.getItem("chatProgress");
-    const puzzleCompleted = localStorage.getItem("puzzleCompleted");
+function updateUIForLoadedState() {
+  // Hide all day buttons first
+  startDay2Button.style.display = "none";
+  startDay3Button.style.display = "none";
+  startDay4Button.style.display = "none";
+  startDay5Button.style.display = "none";
 
-    if (savedProgress) {
-      const progressData = JSON.parse(savedProgress);
-
-      // If puzzle is completed and we're still on day 4, move to day 5
-      if (puzzleCompleted === "true" && progressData.currentDay === "day4") {
-        currentDay = "day5";
-        currentStage = "start";
-        const newDayStage = dialogues[currentDay][currentStage][0];
-        displayMessage("--- Next Day ---", [], false);
-        displayMessage(newDayStage.text, newDayStage.options, false);
-      } else {
-        // Load progress as before
-        currentDay = progressData.currentDay;
-        currentStage = progressData.currentStage;
-        chatMessages.innerHTML = progressData.chatMessages;
-        firstChoiceMade = progressData.firstChoiceMade;
-
-        // Render appropriate options or buttons
-        const currentDialogue = dialogues[currentDay][currentStage];
-        if (currentDialogue && currentDialogue[0].options.length === 0) {
-          // Show next day button if applicable
-        } else {
-          const stage = dialogues[currentDay][currentStage][0];
-          renderOptions(stage.options);
-        }
+  // Show the appropriate button or continue the conversation based on the loaded state
+  if (currentStage === "end") {
+      switch(currentDay) {
+          case "day1":
+              startDay2Button.style.display = "block";
+              break;
+          case "day2":
+              startDay3Button.style.display = "block";
+              break;
+          case "day3":
+              startDay4Button.style.display = "block";
+              break;
+          case "day4":
+              startDay5Button.style.display = "block";
+              break;
+          case "day5":
+              // If day5 is completed, you might want to handle this case differently
+              console.log("Game completed");
+              break;
       }
-    } else {
-      initializeChat();
-    }
+  } else {
+      // Continue the conversation from where it left off
+      const stage = dialogues[currentDay][currentStage][0];
+      displayMessage(stage.text, stage.options, false);
   }
+}
+
+
+
+  function initializeGame() {
+    if (loadProgress()) {
+        // If we loaded a saved state, update the UI accordingly
+        updateUIForLoadedState();
+    } else {
+        // If no saved state, start from the beginning
+        const startStage = dialogues[currentDay][currentStage][0];
+        displayMessage(startStage.text, startStage.options, false);
+    }
+
+    addSaveButton();
+}
+
 
   function initializeChat() {
     currentDay = "day1";
@@ -1617,17 +1713,24 @@ function promptProfileClick() {
     displayMessage(initialStage.text, initialStage.options, false);
   }
 
+// New function to add the save button
+function addSaveButton() {
+  const saveButton = document.getElementById('saveProgressButton');
+  saveButton.addEventListener('click', handleManualSave);
+}
+
+
+
+  // Make sure to call initializeGame when the page loads
+window.onload = initializeGame;
+
   startDay2Button.addEventListener("click", startDay2);
   startDay3Button.addEventListener("click", startDay3);
   startDay4Button.addEventListener("click", startDay4);
   startDay5Button.addEventListener("click", startDay5);
   saveProgressButton.addEventListener("click", saveProgress);
 
-  startDay2Button.style.display = "none";
-  startDay3Button.style.display = "none";
-  startDay4Button.style.display = "none";
-  startDay5Button.style.display = "none";
-
+  
   try {
     loadProgress();
   } catch (error) {
