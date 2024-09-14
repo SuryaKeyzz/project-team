@@ -149,7 +149,7 @@ function displayUserProfile(url, username) {
 
   // Add click event listener to the profile container
   profileContainer.addEventListener("click", function () {
-    window.location.href = "/html/achievement.html";
+    window.location.href = "./html/achievement.html";
   });
 
   const profileImage = document.createElement("img");
